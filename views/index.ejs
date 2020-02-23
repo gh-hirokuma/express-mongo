@@ -9,7 +9,11 @@
     <p>Welcome to23 <%= title %></p>
     <ul>
       <% result.forEach((sakeType) => { %>
-      <li><%= sakeType._id %><%= sakeType.name %></li>
+      <li>
+        <%= sakeType._id %><span style="background-color: brown;"
+          ><%= sakeType.name %></span
+        >
+      </li>
       <% }); %>
     </ul>
   </body>
