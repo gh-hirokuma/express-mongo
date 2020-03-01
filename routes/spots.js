@@ -9,4 +9,10 @@ router.get("/", function(req, res, next) {
   })
 });
 
+router.get("/new", function(req, res, next) {
+  Spot.find({}, (err, result) => {
+    res.render("spots/new", { title: "Dive Spots"});
+  })
+});
+
 module.exports = router;

@@ -7,7 +7,7 @@ var insertingSpot = new Spot({
   creature: 'Dugong',
   note: 'Warm',
   depth: 9,
-  image: 'src="/https://images.unsplash.com/photo-1542517477-bcecaecf6817?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80"',
+  image: "/images/dugong.jpg",
   updated_at: moment().unix(),
 });
 
