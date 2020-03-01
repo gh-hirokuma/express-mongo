@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <% include ../_partial/head %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <title>Dive Spots</title>
+  <body>
+  <% include ../_partial/header %>
+
+  <%= spot.name %><br/>
+
+  <a href ='/spots/<%= spot._id %>/edit'>edit</a>
+  <form action="/spots/<%= spot._id %>?_method=DELETE" method="POST">
+    <input type="submit" value="削除" />
+  </form>
+
+  <% include ../_partial/footer %>
+  </body>
+</html>

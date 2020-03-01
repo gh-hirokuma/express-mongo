@@ -50,3 +50,12 @@ SakeType.find({}, function(err, result) {
       });
   });
 });
+
+
+
+location: 'Coron Islands',
+creature: 'Dugong',
+note: 'Warm',
+depth: 9,
+image: "/images/dugong.jpg",
+updated_at: moment().unix(),

@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="stylesheets/style.css" />
     <title>Dive Spots</title>
   <body>
-  <header class= "b_title">
-   <%= title %>
-  </header>
-
+    <% include ../_partial/header %>
+    <a href ='/spots/new'>Add Spot</a>
     <ul>
       <% result.forEach((spot) => { %>
       <li>
-        <%= spot.name %><span style="background-color: brown;"
+        <a href ='/spots/<%= spot._id %>'><%= spot.name %></a><span style="background-color: brown;"
           ><%= spot.location %></span>
       </li>
       <li>
@@ -22,5 +20,8 @@
       </li>
       <% }); %>
     </ul>
+    
+    <% include ../_partial/footer %>
+
   </body>
 </html>
