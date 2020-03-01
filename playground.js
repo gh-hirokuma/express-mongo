@@ -1,52 +1,18 @@
-import { Sake } from "./models/Sake";
-const { SakeType } = require("./models/SakeType");
+import { Spot } from "./models/Spot";
+import moment from 'moment'
 
-var kuheiji = new Sake({
-  brand: "醸し人九平次2",
-  impressions: [
-    { temperature: 7, impression: "めちゃうま" },
-    { temperature: 10, impression: "激うま" }
-  ]
+var insertingSpot = new Spot({
+  name: 'Aban-Aban',
+  location: 'Coron Islands',
+  creature: 'Dugong',
+  note: 'Warm',
+  depth: 9,
+  image: 'src="/https://images.unsplash.com/photo-1542517477-bcecaecf6817?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80"',
+  updated_at: moment().unix(),
 });
+
 
 // ドキュメントの保存
-kuheiji.save(function(err) {
+insertingSpot.save(function(err) {
   if (err) console.log(err);
-
-  const sakeType = new SakeType({
-    name: "たいぷ",
-    sake: kuheiji._id
-  });
-
-  sakeType.save(function(err) {
-    if (err) console.log(err);
-  });
-});
-
-var jokigen = new Sake({
-  brand: "上喜元",
-  type: 9,
-  impressions: [
-    { temperature: 7, impression: "フルーティ" },
-    { temperature: 9, impression: "フレッシュ" }
-  ]
-});
-
-jokigen.save(function(err) {
-  if (err) throw err;
-});
-
-Sake.find({ _id: "5e49e755ab50315474b6d6bc" }, function(err, result) {
-  if (err) throw err;
-  console.log(result);
-});
-
-SakeType.find({}, function(err, result) {
-  result.forEach(sakeType => {
-    SakeType.findOne({ _id: sakeType._id })
-      .populate("sake")
-      .exec(function(err, type) {
-        console.log(type);
-      });
-  });
 });

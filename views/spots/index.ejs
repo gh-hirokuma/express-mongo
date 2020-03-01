@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <% include ../_partial/head %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <title>Dive Spots</title>
+  <body>
+  <header class= "b_title">
+   <%= title %>
+  </header>
+
+    <ul>
+      <% result.forEach((spot) => { %>
+      <li>
+        <%= spot.name %><span style="background-color: brown;"
+          ><%= spot.location %></span>
+      </li>
+      <li>
+        <%= spot.image %>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <% include ../_partial/head %>
+  <body>
+    <h1><%= title %></h1>
+    <ul>
+      <% result.forEach((spot) => { %>
+      <li>
+        <%= user.name %><span style="background-color: brown;"
+          ><%= user.country; %></span>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

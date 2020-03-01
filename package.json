@@ -4,19 +4,24 @@
   "private": true,
   "scripts": {
     "start": "nodemon --exec babel-node ./bin/www",
-    "play": "nodemon --exec babel-node ./playground.js"
+    "play": "nodemon --exec babel-node ./playground.js",
+    "build": "postcss assets/css/tailwind.css -o public/stylesheets/tlwnd.css"
   },
   "dependencies": {
     "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "autoprefixer": "^9.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "moment": "^2.24.0",
     "mongoose": "^5.9.1",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "postcss-cli": "^7.1.0",
+    "tailwindcss": "^1.2.0"
   }
 }

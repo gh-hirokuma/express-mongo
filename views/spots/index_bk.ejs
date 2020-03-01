@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <% include ../_partial/head %>
+  <body>
+    <h1><%= title %></h1>
+    <ul>
+      <% result.forEach((spot) => { %>
+      <li>
+        <%= spot.name %><span style="background-color: brown;"
+          ><%= spot.location %></span>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
