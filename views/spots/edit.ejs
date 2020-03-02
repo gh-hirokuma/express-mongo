@@ -12,6 +12,16 @@
     <form action="/spots/<%= spot._id %>?_method=PUT" method="POST">
       <label for="fname">Name:</label><br>
       <input type="text" id="name" name="name" value="<%= spot.name %>"><br>
+      <label for="location">Location:</label><br>
+      <input type="text" id="location" name="location" value="<%= spot.location %>"><br>
+      <label for="creaure">Creature:</label><br>
+      <input type="text" id="creature" name="creature" value="<%= spot.creature %>"><br>
+      <label for="Note">Note:</label><br>
+      <input type="text" id="note" name="note" value="<%= spot.note %>"><br>
+      <label for="depth">Depth:</label><br>
+      <input type="number" id="depth" name="depth" value="<%= spot.depth %>"><br>
+      <label for="image">Image:</label><br>
+      <input type="file" id="file" name="file" value="<%= spot.image %>" accept="image/png, image/jpeg"><br>
       <input type="submit" value="Submit">
     </form>
 

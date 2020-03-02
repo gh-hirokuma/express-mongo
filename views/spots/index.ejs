@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html  lang="en">
   <% include ../_partial/head %>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <title>Dive Spots</title>
   <body>
     <% include ../_partial/header %>
-    <a href ='/spots/new'>Add Spot</a>
+    <span class ="linkbtn"><a href ='/spots/new'>Add Spot</a></span>
+
+    <div class="container-1">
+      <div class="spotlist">
+        <% result.forEach((spot) => { %>
+          <p><a href ='/spots/<%= spot._id %>'><%= spot.name %></a></p>
+          <p><%= spot.location %></p>
+          </p><img src="<%= spot.image %>" width="30%" alt ="<%= spot.name %>"></p>
+          <p>max depth: <%= spot.depth %>m</p>
+          <p>creature: <%= spot.creature %></p>
+          <p>comment: <%= spot.note %></p>
+        <% }); %>
+      </ul>
+    </div>
+
     <ul>
       <% result.forEach((spot) => { %>
       <li>
         <a href ='/spots/<%= spot._id %>'><%= spot.name %></a><span style="background-color: brown;"
           ><%= spot.location %></span>
       </li>
+      <img src="<%= spot.image %>" width="30%" alt ="<%= spot.name %>">
+      </li>
       <li>
-        <img src="<%= spot.image %>" alt ="<%= spot.name %>">
+        <span>max depth: <%= spot.depth %>m</span>
+      </li>
+      <li>
+        <span>creature: <%= spot.creature %></span>
+      </li>
+      <li>
+        <span>comment: <%= spot.note %></span>
       </li>
       <% }); %>
     </ul>

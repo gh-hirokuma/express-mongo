@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html  lang="en">
   <% include ../_partial/head %>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <title>Dive Spots</title>
+
   <body>
   <% include ../_partial/header %>
+  <div class ="showInfo">
+    <p class ="showSpotName"><%= spot.name %></p>
+    <p><%= spot.location %></p>
+    </p><img src="<%= spot.image %>" width="70%" class="center" alt ="<%= spot.name %>"></p>
+    <p>Max Depth: <%= spot.depth %>m</p>
+    <p>Creature: <%= spot.creature %></p>
+    <p>Comment:<br/> <%= spot.note %></p>
+  </div>
 
-  <%= spot.name %><br/>
-
-  <a href ='/spots/<%= spot._id %>/edit'>edit</a>
-  <form action="/spots/<%= spot._id %>?_method=DELETE" method="POST">
-    <input type="submit" value="削除" />
-  </form>
+  <div class ="showAction">
+    <a href ='/spots/<%= spot._id %>/edit'>edit</a>
+    <form action="/spots/<%= spot._id %>?_method=DELETE" method="POST">
+      <input type="submit" value="削除" />
+    </form>
+  </div>
 
   <% include ../_partial/footer %>
   </body>
