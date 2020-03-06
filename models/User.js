@@ -5,6 +5,8 @@ const User = new Schema({
   certificate: String,
   country: String,
   DOB: Date,
+  email: String,
+  password: String,
   created_at: Number,
   updated_at: Number,
 });

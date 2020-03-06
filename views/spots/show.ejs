@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html  lang="en">
   <% include ../_partial/head %>
-
   <body>
   <% include ../_partial/header %>
   <div class ="showInfo">
     <p class ="showSpotName"><%= spot.name %></p>
     <p><%= spot.location %></p>
     </p><img src="<%= spot.image %>" width="70%" class="center" alt ="<%= spot.name %>"></p>
-    <p>Max Depth: <%= spot.depth %>m</p>
+    <p class="bg-gray-700">Max Depth: <%= spot.depth %>m</p>
     <p>Creature: <%= spot.creature %></p>
     <p>Comment:<br/> <%= spot.note %></p>
+    <p>Last Update: <%= spot.updated_at %></p>
   </div>
 
   <div class ="showAction">

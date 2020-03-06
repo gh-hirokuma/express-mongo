@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <% include ../_partial/head %>
+  <body>
+  <% include ../_partial/header %>
+  <div>
+    <p class ="text-size:x-large"><%= data.name %></p>
+    <p><%= data.certificate %></p>
+    <p>Country: <%= data.country %></p>
+    <p>Date of Birth: <%= data.DOB %></p>
+    <p>Joined: <%= data.created_at %></p>
+  </div>
+
+  <div>
+    <a href ='/users/<%= data._id %>/edit'>edit</a>
+    <form action="/users/<%= data._id %>?_method=DELETE" method="POST">
+      <input type="submit" value="削除" />
+    </form>
+  </div>
+
+  <% include ../_partial/footer %>
+  </body>
+</html>
