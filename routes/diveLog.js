@@ -1,12 +1,17 @@
 var express = require("express");
 var router = express.Router();
-import { DiveLog } from "../models/DiveLog";
+import { User } from "../models/User";
+import { v1 } from 'uuid'
+var multer = require("multer");
 
-/* GET users listing. */
+/* GET log listing. */
 router.get("/", function(req, res, next) {
-  DiveLog.find({}, (err, result) => {
-    res.render("diveLog/index", { title: "DiveLog", result: result });
-  })
+  User.find({}, function (err, users) {
+    if (err) console.log(err)
+    console.log(users)
+    res.render("divelogs/index", { title: "DiveLog", slug: 'divelogs', result: users })
+  }).populate('divelog')
 });
+
 
 module.exports = router;

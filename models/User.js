@@ -7,6 +7,7 @@ const User = new Schema({
   DOB: Date,
   email: String,
   password: String,
+  divelog: { type: Schema.Types.ObjectId, ref: "DiveLog" },
   created_at: Number,
   updated_at: Number,
 });

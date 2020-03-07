@@ -35,9 +35,8 @@ router.delete("/:spotId", function(req, res, next) {
 //更新後の結果を表示
 router.put("/:spotId", function(req, res, next) {
   const { spotId } =  req.params
-  const name = req.body.name
 
-  Spot.update({ _id: spotId }, { $set: { name: name } }, (err, result) => {
+  Spot.update({ _id: spotId }, { $set: { ...req.body } }, (err, result) => {
     res.redirect(`${req.baseUrl}/${spotId}`)
   })
 });
@@ -47,7 +46,7 @@ router.get("/:spotId/edit", function(req, res, next) {
   const { spotId } =  req.params
   Spot.find({ _id: spotId }, (err, result) => {
     console.log(result)
-    res.render("spots/edit", { title: "Dive Spots", spot: result[0]});
+    res.render("spots/edit", { title: "Dive Spots", slug: 'spots', spot: result[0]});
   })
 
 });
@@ -57,7 +56,7 @@ router.get("/:spotId/edit", function(req, res, next) {
 router.get("/:spotId", function(req, res, next) {
   const { spotId } =  req.params
   Spot.find({ _id: spotId }, (err, result) => {
-    res.render("spots/show", { title: "Dive Spots", spot: result[0] });
+    res.render("spots/show", { title: "Dive Spots", slug: 'spots', spot: result[0] });
   })
 });
 
@@ -65,7 +64,7 @@ router.get("/:spotId", function(req, res, next) {
 /* GET users listing. */
 router.get("/", function(req, res, next) {
   Spot.find({}, (err, result) => {
-    res.render("spots/index", { title: "Dive Spots", result: result });
+    res.render("spots/index", { title: "Dive Spots", slug: 'spots', result: result });
   })
 });
 

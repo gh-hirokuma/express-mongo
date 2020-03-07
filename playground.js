@@ -1,22 +1,20 @@
-import { DiveLog } from "./models/DiveLog";
+import { User } from "./models/User";
 import moment from 'moment'
 
-var insertingDiveLog = new DiveLog({
-  date: moment('2019-07-24'),
-  entry: 'Beach entry',
-  current: 'No Current',
-  weather: 'Cloudless',
-  air_temperature: 29,
-  water_temperature: 27,
-  depth: 13,
-  duration: 46,
-  note:'Advanced Open Water Course. Night dive. Beautiful little shrimps...',
+var insertingUser = new User({
+  name: 'Guillaume',
+  certificate: 'Instructor',
+  country: 'France',
+  DOB: moment('1985-07-24'),
+  email: 'love2dive@dive.com',
+  password: '',
+  divelog: '5e6229ad101b5b0b9ff53213',
   created_at: moment().unix(),
   updated_at: moment().unix(),
 });
 
 
 // ドキュメントの保存
-insertingDiveLog.save(function(err) {
+insertingUser.save(function(err) {
   if (err) console.log(err);
 });

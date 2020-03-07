@@ -4,18 +4,18 @@
   <body>
   <% include ../_partial/header %>
   <div>
-    <p class ="text-size:x-large"><%= data.name %></p>
-    <p><%= data.certificate %></p>
-    <p>Country: <%= data.country %></p>
-    <p>Date of Birth: <%= data.DOB %></p>
-    <p>Joined: <%= data.created_at %></p>
+    <p class ="text-size:x-large"><%= result.name %></p>
+    <p><%= result.certificate %></p>
+    <p>Country: <%= result.country %></p>
+    <a href ='/divelogs/<%= result._id %>/'><%= result.name %>'s Dive Log</a>
   </div>
 
   <div>
-    <a href ='/users/<%= data._id %>/edit'>edit</a>
-    <form action="/users/<%= data._id %>?_method=DELETE" method="POST">
-      <input type="submit" value="削除" />
+    <a href ='/users/<%= result._id %>/edit'>edit</a>
+    <form action="/users/<%= result._id %>?_method=DELETE" method="POST">
+      <input type="submit" value="Leave go2dive"/>
     </form>
+
   </div>
 
   <% include ../_partial/footer %>
