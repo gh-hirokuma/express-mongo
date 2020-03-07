@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-import { SakeType } from "../models/SakeType";
+const { SakeType } = require("../models/SakeType");
 
 /* GET home page. */
 router.get("/", (req, res, next) => {

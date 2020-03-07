@@ -1,4 +1,4 @@
-import { Schema, mongoose } from "../utils/db";
+const { Schema, mongoose } = require("../utils/db");
 
 const Sake = new Schema({
   brand: String,

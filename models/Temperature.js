@@ -1,4 +1,4 @@
-import { Schema, mongoose } from "../utils/db";
+const { Schema, mongoose } = require("../utils/db");
 
 const Temperature = new Schema({
   temperature: String

@@ -1,4 +1,4 @@
-import { Schema, mongoose } from "../utils/db";
+const { Schema, mongoose } = require("../utils/db");
 
 const DiveLog = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
@@ -13,7 +13,7 @@ const DiveLog = new Schema({
   duration: Number,
   note: String,
   created_at: Number,
-  updated_at: Number,
+  updated_at: Number
 });
 
 exports.DiveLog = mongoose.model("DiveLog", DiveLog);

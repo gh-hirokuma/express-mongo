@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html  lang="en">
+<html lang="en">
   <% include ../_partial/head %>
   <body>
     <% include ../_partial/header %>
-    <span><a href ='/divelogs/new'>Log a Dive</a></span>
+    <span><a href="/divelogs/new">Log a Dive</a></span>
 
     <ul>
       <% result.forEach((users, i) => { %>
-        <li>
-          <%= users.name %>:
-          <% if (users.divelog) { %>
-            <%= users.divelog %>
-          <% } %>
-        </li>
+      <li>
+        <%= users.name %>: <% if (users.divelogs) { %> <%
+        users.divelogs.forEach((divelog, i) => { %> <%= `${i +
+        1}${divelog.weather}` %> <% }) %> <% } %>
+      </li>
       <% }); %>
     </ul>
 
     <% include ../_partial/footer %>
-
   </body>
 </html>

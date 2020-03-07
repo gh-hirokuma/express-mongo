@@ -1,4 +1,4 @@
-import { Schema, mongoose } from "../utils/db";
+const { Schema, mongoose } = require("../utils/db");
 
 const Spot = new Schema({
   name: String,
@@ -8,7 +8,7 @@ const Spot = new Schema({
   depth: Number,
   image: String,
   created_at: Number,
-  updated_at: Number,
+  updated_at: Number
 });
 
 exports.Spot = mongoose.model("Spot", Spot);

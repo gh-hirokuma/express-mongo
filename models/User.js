@@ -1,4 +1,5 @@
-import { Schema, mongoose } from "../utils/db";
+const { Schema, mongoose } = require("../utils/db");
+const { DiveLog } = require("./DiveLog");
 
 const User = new Schema({
   name: String,
@@ -7,9 +8,9 @@ const User = new Schema({
   DOB: Date,
   email: String,
   password: String,
-  divelog: { type: Schema.Types.ObjectId, ref: "DiveLog" },
+  divelogs: [{ type: Schema.Types.ObjectId, ref: "DiveLog" }],
   created_at: Number,
-  updated_at: Number,
+  updated_at: Number
 });
 
 exports.User = mongoose.model("User", User);
