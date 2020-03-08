@@ -1,10 +1,11 @@
 var createError = require("http-errors");
-const connect = require('connect')
+const bcrypt = require("bcrypt");
+const connect = require("connect");
 var express = require("express");
 const session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-const methodOverride = require('method-override')
+const methodOverride = require("method-override");
 var logger = require("morgan");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -26,9 +27,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(methodOverride('_method'))
+app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
-
 
 //log in by session. not by cookie
 app.use(
@@ -49,7 +49,7 @@ passport.use(
         return done(null, false);
       }
 
-      if (result.password === password) {
+      if (bcrypt.compareSync(password, result.password)) {
         return done(null, { username: username, password: password });
       } else {
         return done(null, false);
@@ -70,7 +70,6 @@ passport.deserializeUser((user, done) => {
 //activate
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

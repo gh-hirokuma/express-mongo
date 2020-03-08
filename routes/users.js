@@ -1,4 +1,5 @@
 var express = require("express");
+const bcrypt = require("bcrypt");
 var router = express.Router();
 const { User } = require("../models/User");
 const moment = require("moment");
@@ -39,8 +40,6 @@ router.get("/:userId/edit", function(req, res, next) {
   });
 });
 
-
-
 /* GET user listing. */
 router.get("/:userId/logs", function(req, res, next) {
   const { userId } = req.params;
@@ -49,9 +48,8 @@ router.get("/:userId/logs", function(req, res, next) {
       title: "Users Log",
       slug: "users",
       result: result
-      });
-  }
-  ).populate("divelogs");
+    });
+  }).populate("divelogs");
 });
 
 //詳細表示
@@ -73,7 +71,6 @@ router.get("/:userId", function(req, res, next) {
   });
 });
 
-
 /* GET users listing. */
 router.get("/", function(req, res, next) {
   User.find({}, (err, result) => {
@@ -81,22 +78,20 @@ router.get("/", function(req, res, next) {
   });
 });
 
-
-
 //user registration
 router.post("/", function(req, res, next) {
   var insertingUser = new User({
     ...req.body,
+    password: bcrypt.hashSync(req.body.password, 10),
     created_at: moment().unix(),
     updated_at: moment().unix()
   });
 
-//save new user info and redirect to login screen
-insertingUser.save(function(err) {
-  if (err) console.log(err);
+  //save new user info and redirect to login screen
+  insertingUser.save(function(err) {
+    if (err) console.log(err);
     res.redirect("/signin");
   });
 });
-
 
 module.exports = router;
