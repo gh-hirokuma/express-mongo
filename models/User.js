@@ -2,7 +2,7 @@ const { Schema, mongoose } = require("../utils/db");
 const { DiveLog } = require("./DiveLog");
 
 const User = new Schema({
-  name: String,
+  username: String,
   certificate: String,
   country: String,
   DOB: Date,

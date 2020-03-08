@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const { User } = require("../models/User");
-const { DiveLog } = require("../models/DiveLog");
 const moment = require("moment");
 
 //新規追加
@@ -42,7 +41,7 @@ router.get("/:userId/edit", function(req, res, next) {
 
 
 
-/* GET log listing. */
+/* GET user listing. */
 router.get("/:userId/logs", function(req, res, next) {
   const { userId } = req.params;
   User.find({ _id: userId }, (err, result) => {
@@ -53,15 +52,6 @@ router.get("/:userId/logs", function(req, res, next) {
       });
   }
   ).populate("divelogs");
-  // DiveLog.find({}, function(err, divelogs) {
-  //   if (err) console.log(err);
-  //   console.log(divelogs);
-  //   res.render("users/users_log", {
-  //     title: "Users Log",
-  //     slug: "users",
-  //     result: divelogs
-  //   });
-  //   }).populate("users");
 });
 
 //詳細表示
@@ -70,10 +60,11 @@ router.get("/:userId", function(req, res, next) {
   User.findOne({ _id: userId }, function(err, user) {
     const data = {
       _id: user._id,
-      name: user.name,
+      username: user.username,
       DOB: moment(user.DOB).format("YYYY/MM/DD"),
       certificate: user.certificate,
       country: user.country,
+      email: user.email,
       created_at: user.created_at,
       updated_at: user.updated_at
     };
@@ -84,13 +75,28 @@ router.get("/:userId", function(req, res, next) {
 
 
 /* GET users listing. */
-router.get("/", function(req, 
-  res, next) {
+router.get("/", function(req, res, next) {
   User.find({}, (err, result) => {
     res.render("users/index", { title: "User", slug: "users", result: result });
   });
 });
 
+
+
+//user registration
+router.post("/", function(req, res, next) {
+  var insertingUser = new User({
+    ...req.body,
+    created_at: moment().unix(),
+    updated_at: moment().unix()
+  });
+
+//save new user info and redirect to login screen
+insertingUser.save(function(err) {
+  if (err) console.log(err);
+    res.redirect("/signin");
+  });
+});
 
 
 module.exports = router;

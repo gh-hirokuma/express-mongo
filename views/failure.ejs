@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<body>
+  <h1>Incorrect username and/or password.</h1>
+  <h3>Try Again.</h3>
+  <form action="/auth" method="post">
+    <label for="username">Userame:</label>
+    <input type="text" name="username" id=""><br/>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="">
+    <input type="submit" value="Login">
+  </form>
+
+  <h3>If you are not a member yet, please register now!</h3>
+  <form action="/users" method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id=""><br>
+    <label for="email">Email:</label>
+    <input type="text" name="email" id=""><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id=""><br>
+    <input type="submit" value="Register">
+  </form>
+
+</body>
+</html>

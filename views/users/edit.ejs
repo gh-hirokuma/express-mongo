@@ -10,8 +10,8 @@
     <% include ../_partial/header %>
 
     <form action="/users/<%= user._id %>?_method=PUT" method="POST">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" value="<%= user.name %>"><br>
+      <label for="username">Name:</label><br>
+      <input type="text" id="name" name="name" value="<%= user.username %>"><br>
       <label for="certificate">Certification Level:</label><br>
       <input type="text" id="certificate" name="certificate" value="<%= user.certificate %>"><br>
       <label for="country">Country:</label><br>

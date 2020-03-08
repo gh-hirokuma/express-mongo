@@ -1,15 +1,20 @@
 var createError = require("http-errors");
 const connect = require('connect')
 var express = require("express");
+const session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 const methodOverride = require('method-override')
 var logger = require("morgan");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var spotsRouter = require("./routes/spots");
 var divelogsRouter = require("./routes/diveLog");
+
+const { User } = require("./models/User");
 
 var app = express();
 
@@ -23,6 +28,49 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, "public")));
+
+
+//log in by session. not by cookie
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: false
+  })
+);
+
+//define login method
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    await User.findOne({ username: username }, (err, result) => {
+      if (err) console.log(err);
+
+      if (!result) {
+        return done(null, false);
+      }
+
+      if (result.password === password) {
+        return done(null, { username: username, password: password });
+      } else {
+        return done(null, false);
+      }
+    });
+  })
+);
+
+//must for passport
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+//activate
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
