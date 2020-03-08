@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <% include ../_partial/head %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <title>Log a Dive</title>
+  <body>
+
+    <form action="/divelogs" method="POST" enctype="multipart/form-data">
+      <label for="date">Date:</label><br>
+      <input type="date" id="date" name="date" value=""><br>
+      <label for="entry">Entry:</label><br>
+      <input type="text" id="entry" name="entry" value=""><br>
+      <label for="current">Current:</label><br>
+      <input type="text" id="current" name="current" value=""><br>
+      <label for="weather">Weather:</label><br>
+      <input type="text" id="weather" name="weather" value=""><br>
+      <label for="air_temperature">Air Temperature:</label><br>
+      <input type="number" id="air_temperature" name="air_temperature" value=""><br>
+      <label for="water_temperature">Water Tenperature:</label><br>
+      <input type="number" id="water_temperature" name="water_temperature" value=""><br>
+      <label for="depth">Max Depth:</label><br>
+      <input type="number" id="depth" name="depth" value=""><br>
+      <label for="duration">Duration:</label><br>
+      <input type="number" id="duration" name="duration" value=""><br>
+      <label for="note">Note:</label><br>
+      <input type="string" id="note" name="note" value=""><br>
+      
+      <input type="submit" value="Submit">
+    </form>
+
+    <% include ../_partial/footer %>
+  </body>
+</html>

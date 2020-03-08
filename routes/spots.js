@@ -102,6 +102,6 @@ router.post("/", upload.single("file"), function(req, res, next) {
 
     res.redirect(req.baseUrl);
   });
-});
+})
 
 module.exports = router;

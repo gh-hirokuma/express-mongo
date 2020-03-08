@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <% include ../_partial/head %>
+  <body>
+  <% include ../_partial/header %>
+  <div>
+    <p>Entry: <%= divelog.entry %></p>
+    <p>Current: <%= divelog.current %>m</p>
+    <p>Weather: <%= divelog.weather %></p>
+    <p>Air Temperature: <%= divelog.air_temperature %> ℃</p>
+    <p>Water Temperature: <%= divelog.water_temperature %> ℃</p>
+    <p>Max Depth: <%= divelog.depth %> m</p>
+    <p>Duration: <%= divelog.duration %> mins</p>
+    <div class="flex flex-wrap">
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-300">
+    <%= divelog.note %>
+      </div>
+  </div>
+
+  <div>
+    <a href ='/divelogs/<%= divelog._id %>/edit'>edit</a>
+    <form action="/divelogs/<%= divelog._id %>?_method=DELETE" method="POST">
+      <input type="submit" value="remove" />
+    </form>
+  </div>
+
+  <% include ../_partial/footer %>
+  </body>
+</html>

@@ -17,27 +17,7 @@
         <% }); %>
       </ul>
     </div>
-
-    <ul>
-      <% result.forEach((spot) => { %>
-      <li>
-        <a href ='/spots/<%= spot._id %>'><%= spot.name %></a><span style="background-color: brown;"
-          ><%= spot.location %></span>
-      </li>
-      <img src="<%= spot.image %>" width="30%" alt ="<%= spot.name %>">
-      </li>
-      <li>
-        <span>max depth: <%= spot.depth %>m</span>
-      </li>
-      <li>
-        <span>creature: <%= spot.creature %></span>
-      </li>
-      <li>
-        <span>comment: <%= spot.note %></span>
-      </li>
-      <% }); %>
-    </ul>
-    
+    </div>
     <% include ../_partial/footer %>
 
   </body>

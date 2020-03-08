@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="en">
   <% include ../_partial/head %>
   <body>
-    <% include ../_partial/header %>
-    <span><a href="/divelogs/new">Log a Dive</a></span>
+  <% include ../_partial/header %>
+  <div>
+
 
     <ul>
       <% result.forEach((users, i) => { %>
@@ -18,7 +19,8 @@
       <% }); %>
     </ul>
 
-    <% include ../_partial/footer %>
-  </body>
+ </div>
 
+  <% include ../_partial/footer %>
+  </body>
 </html>
