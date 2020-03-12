@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GO2DIVE</title>
+    <link rel="stylesheet" href="./stylesheets/normalize.css" />
+    <link rel="stylesheet" href="./stylesheets/tlwnd.css" />
+  </head>
+  <body>
+    <main>
+      <section class="relative w-full h-screen">
+        <div class="absolute w-full h-full bg-gray-900 opacity-75"></div>
+        <div
+          class="absolute bg-transparent w-full h-full flex flex-col justify-center items-center"
+        >
+          <section>
+            <h1
+              class="p-2 mb-8 text-white text-xl border-b-2 border-white uppercase"
+            >
+              go2dive signin
+            </h1>
+          </section>
+          <section class="w-1/2 bg-white flex flex-row">
+            <section class="w-1/2">
+              <img
+                class="object-cover w-full h-full"
+                src="https://images.unsplash.com/photo-1463468217891-c11f48e6310a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                alt="img"
+              />
+            </section>
+            <section class="w-1/2 flex flex-col p-12">
+              <h2 class="font-bold text-lg text-blue-600 mb-8">Sign Up</h2>
+              <form class="flex flex-col" action="/users" method="post">
+                <label class="text-xs" for="username">Username</label>
+                <input
+                  class="p-2 py-1 border-b-2 border-blue-600 mb-4"
+                  type="text"
+                  name="username"
+                  placeholder="type your name here..."
+                />
+                <label class="text-xs" for="email">Email</label>
+                <input
+                  class="p-2 py-1 border-b-2 border-blue-600 mb-4"
+                  type="text"
+                  name="email"
+                  placeholder="type your email here..."
+                />
+                <label class="text-xs" for="password">Password</label>
+                <input
+                  class="p-2 py-1 border-b-2 border-blue-600 mb-8"
+                  type="password"
+                  name="password"
+                  placeholder="type your password here..."
+                />
+                <input
+                  class="bg-blue-600 text-white p-4 py-2"
+                  type="submit"
+                  value="Sign Up"
+                />
+              </form>
+            </section>
+          </section>
+        </div>
+        <img
+          class="object-cover w-full h-full"
+          src="https://images.unsplash.com/photo-1498878359518-e494cdb0bb54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1800&q=80"
+          alt="hero"
+        />
+      </section>
+    </main>
+  </body>
+</html>
