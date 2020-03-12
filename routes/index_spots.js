@@ -8,7 +8,7 @@ router.get("/", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     res.redirect("/dashboard");
   } else {
-    res.render("index", { title: "Express" });
+    res.render("index_spots", { title: "Express" });
   }
 });
 

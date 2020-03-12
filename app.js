@@ -1,10 +1,11 @@
 var createError = require("http-errors");
-const connect = require('connect')
+const bcrypt = require("bcrypt");
+const connect = require("connect");
 var express = require("express");
 const session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-const methodOverride = require('method-override')
+const methodOverride = require("method-override");
 var logger = require("morgan");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -13,6 +14,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var spotsRouter = require("./routes/spots");
 var divelogsRouter = require("./routes/diveLog");
+var authRouter = require("./routes/auth");
+var dashboardRouter = require("./routes/dashboard");
+var index_spotsRouter = require("./routes/index_spots");
 
 const { User } = require("./models/User");
 
@@ -26,9 +30,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(methodOverride('_method'))
+app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
-
 
 //log in by session. not by cookie
 app.use(
@@ -49,8 +52,15 @@ passport.use(
         return done(null, false);
       }
 
-      if (result.password === password) {
-        return done(null, { username: username, password: password });
+      console.log("password", password);
+      console.log("result.password", result.password);
+
+      if (bcrypt.compareSync(password, result.password)) {
+        return done(null, {
+          username: username,
+          password: password,
+          _id: result._id
+        });
       } else {
         return done(null, false);
       }
@@ -71,11 +81,13 @@ passport.deserializeUser((user, done) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/spots", spotsRouter);
 app.use("/divelogs", divelogsRouter);
+app.use("/auth", authRouter);
+app.use("/dashboard", dashboardRouter);
+app.use("/index_spots", index_spotsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

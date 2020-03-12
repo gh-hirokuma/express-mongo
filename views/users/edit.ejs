@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html  lang="en">
-  <% include ../_partial/head %>
+  <%- include('../_partial/head') %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="stylesheets/style.css" />
     <title>Edit Profile</title>
   <body>
-    <% include ../_partial/header %>
+    <%- include('../_partial/header') %>
 
     <form action="/users/<%= user._id %>?_method=PUT" method="POST">
       <label for="username">Name:</label><br>
@@ -22,6 +22,6 @@
       <input type="submit" value="Submit">
     </form>
 
-    <% include ../_partial/footer %>
+    <%- include('../_partial/footer') %>
   </body>
 </html>

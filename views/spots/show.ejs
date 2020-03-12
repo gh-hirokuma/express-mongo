@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html  lang="en">
-  <% include ../_partial/head %>
+  <%- include('../_partial/head') %>
   <body>
-  <% include ../_partial/header %>
+  <%- include('../_partial/header') %>
   <div class ="showInfo">
     <p class ="showSpotName"><%= spot.name %></p>
     <p><%= spot.location %></p>
@@ -20,6 +20,6 @@
     </form>
   </div>
 
-  <% include ../_partial/footer %>
+  <%- include('../_partial/footer') %>
   </body>
 </html>
