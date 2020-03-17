@@ -8,6 +8,8 @@ router.post(
     next();
   },
   passport.authenticate("local", {
+    failureFlash: "Invalid Username or Password.",
+    successFlash: "Welcome!",
     failureRedirect: "/signin"
   }),
   (req, res) => {

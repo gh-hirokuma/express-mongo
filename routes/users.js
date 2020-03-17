@@ -5,15 +5,6 @@ const { User } = require("../models/User");
 const { isAuthenticated } = require("../utils/auth");
 const moment = require("moment");
 
-//新規追加
-router.get("/new", function(req, res, next) {
-  if (isAuthenticated(req.user)) {
-    res.render("users/new", { title: "User" });
-  } else {
-    res.redirect("/signin");
-  }
-});
-
 //削除
 router.delete("/:userId", function(req, res, next) {
   if (isAuthenticated(req.user)) {
@@ -58,14 +49,45 @@ router.get("/:userId/edit", function(req, res, next) {
 /* GET user listing. */
 router.get("/:userId/logs", function(req, res, next) {
   if (isAuthenticated(req.user)) {
+    const { _id } = req.user;
     const { userId } = req.params;
+
+    const isMe = userId === _id;
+
     User.find({ _id: userId }, (err, result) => {
       res.render("users/users_log", {
         title: "Users Log",
         slug: "users",
-        result: result
+        result,
+        isMe
       });
     }).populate("divelogs");
+  } else {
+    res.redirect("/signin");
+  }
+});
+
+//my profile
+router.get("/profile", function(req, res, next) {
+  if (isAuthenticated(req.user)) {
+    const { _id } = req.user;
+    User.findOne({ _id: _id }, function(err, user) {
+      const data = {
+        _id: user._id,
+        username: user.username,
+        DOB: moment(user.DOB).format("YYYY/MM/DD"),
+        certificate: user.certificate,
+        country: user.country,
+        email: user.email,
+        created_at: user.created_at,
+        updated_at: user.updated_at
+      };
+      res.render("users/profile", {
+        title: "User",
+        slug: "users",
+        result: data
+      });
+    });
   } else {
     res.redirect("/signin");
   }
@@ -93,32 +115,6 @@ router.get("/:userId", function(req, res, next) {
   }
 });
 
-//my profile
-router.get("/profile", function(req, res, next) {
-  if (isAuthenticated(req.user)) {
-    const { userId } = req.user;
-    User.findOne({ _id: userId }, function(err, user) {
-      const data = {
-        _id: user._id,
-        username: user.username,
-        DOB: moment(user.DOB).format("YYYY/MM/DD"),
-        certificate: user.certificate,
-        country: user.country,
-        email: user.email,
-        created_at: user.created_at,
-        updated_at: user.updated_at
-      };
-      res.render("users/profile", {
-        title: "User",
-        slug: "users",
-        result: data
-      });
-    });
-  } else {
-    res.redirect("/signin");
-  }
-});
-
 /* GET users listing. */
 router.get("/", function(req, res, next) {
   if (isAuthenticated(req.user)) {
@@ -138,15 +134,33 @@ router.get("/", function(req, res, next) {
 router.post("/", function(req, res, next) {
   var insertingUser = new User({
     ...req.body,
-    password: bcrypt.hashSync(req.body.password, 10),
+    password: req.body.password ? bcrypt.hashSync(req.body.password, 10) : "",
     created_at: moment().unix(),
     updated_at: moment().unix()
   });
 
   //save new user info and redirect to login screen
   insertingUser.save(function(err) {
-    if (err) console.log(err);
-    res.redirect("/signin");
+    if (err) {
+      const errors = [
+        err.errors["username"],
+        err.errors["email"],
+        err.errors["password"]
+      ];
+
+      console.log(errors);
+
+      const newErrors = errors
+        .filter(object => object)
+        .map(error => {
+          return error.message;
+        });
+
+      req.flash("error", newErrors);
+      res.redirect(`/signup`);
+    } else {
+      res.redirect("/signin");
+    }
   });
 });
 

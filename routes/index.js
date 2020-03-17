@@ -24,7 +24,7 @@ router.get("/signup", function(req, res, next) {
   res.render("signup", { title: "Express" });
 });
 
-router.post("/logout", (req, res) => {
+router.post("/signout", (req, res) => {
   req.session.passport.user = undefined;
   res.redirect("/");
 });

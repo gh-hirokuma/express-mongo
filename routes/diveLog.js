@@ -16,25 +16,33 @@ router.get("/new", function(req, res, next) {
 
 router.post("/", function(req, res, next) {
   if (isAuthenticated(req.user)) {
-    const {} = req.params;
+    console.log(req);
     var insertingDiveLog = new DiveLog({
       ...req.body,
+      user: req.user._id,
       created_at: moment().unix(),
       updated_at: moment().unix()
+    });
+
+    // ドキュメントの保存
+    insertingDiveLog.save(function(err) {
+      if (err) console.log(err);
+
+      User.findOne({ _id: insertingDiveLog.user }, (err, result) => {
+        if (err) console.log(err);
+
+        User.update(
+          { _id: insertingDiveLog.user },
+          { $set: { divelogs: [...result.divelogs, insertingDiveLog._id] } },
+          (err, result) => {
+            res.redirect(`${req.baseUrl}/${insertingDiveLog._id}`);
+          }
+        );
+      });
     });
   } else {
     res.redirect("/signin");
   }
-
-  // ドキュメントの保存
-  insertingDiveLog.save(function(err) {
-    if (isAuthenticated(req.user)) {
-      if (err) console.log(err);
-      res.redirect(req.baseUrl);
-    } else {
-      res.redirect("/signin");
-    }
-  });
 });
 
 //削除

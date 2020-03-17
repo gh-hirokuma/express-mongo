@@ -18,7 +18,7 @@
             <h1
               class="p-2 mb-8 text-white text-xl border-b-2 border-white uppercase"
             >
-              go2dive signin
+              go2dive signup
             </h1>
           </section>
           <section class="w-1/2 bg-white flex flex-row">
@@ -31,6 +31,9 @@
             </section>
             <section class="w-1/2 flex flex-col p-12">
               <h2 class="font-bold text-lg text-blue-600 mb-8">Sign Up</h2>
+              <% if(messages.error){ %> <% messages.error.forEach(err => { %>
+              <div class="alert alert-success" role="alert"><%= err %></div>
+              <% }) %> <% } %>
               <form class="flex flex-col" action="/users" method="post">
                 <label class="text-xs" for="username">Username</label>
                 <input
@@ -48,11 +51,15 @@
                 />
                 <label class="text-xs" for="password">Password</label>
                 <input
-                  class="p-2 py-1 border-b-2 border-blue-600 mb-8"
+                  class="p-2 py-1 border-b-2 border-blue-600 mb-1"
                   type="password"
                   name="password"
                   placeholder="type your password here..."
                 />
+                <span class="mb-3 mt-0 text-sm text-blue-600"
+                  >*8+ letters, must include numbers and lowercase
+                  letters.</span
+                >
                 <input
                   class="bg-blue-600 text-white p-4 py-2"
                   type="submit"

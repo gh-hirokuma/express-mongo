@@ -1,8 +1,14 @@
 const { Schema, mongoose } = require("../utils/db");
 
 const Spot = new Schema({
-  name: String,
-  location: String,
+  name: {
+    type: String,
+    required: [true, "NAME is missing"]
+  },
+  location: {
+    type: String,
+    required: [true, "LOCATION is missing"]
+  },
   creature: String,
   note: String,
   depth: Number,

@@ -2,6 +2,7 @@ var createError = require("http-errors");
 const bcrypt = require("bcrypt");
 const connect = require("connect");
 var express = require("express");
+const flash = require("express-flash");
 const session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -41,6 +42,8 @@ app.use(
     saveUninitialized: false
   })
 );
+
+app.use(flash());
 
 //define login method
 passport.use(

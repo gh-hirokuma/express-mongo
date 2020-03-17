@@ -1,12 +1,33 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html lang="en">
   <%- include('../_partial/head') %>
   <body>
-    <%- include('../_partial/header') %>
+    <%- include('../_partial/header') %> <% if(messages.success){ %>
+    <div class="alert alert-success" role="alert"><%=messages.success %></div>
+    <br />
+    <% } %>
+    <p class="text-bold text-sm">
+      <a href="/users/profile">My Profile</a>
+    </p>
+    <p>
+      <a href="/users/<%= user._id %>/logs">My Divelog</a>
+    </p>
 
-    <p class="text-bold text-sm"><a href="/users/profile">My Profile</a></p>
+    <p>
+      <a href="/spots">Find Dive Spots</a>
+    </p>
+    <p>
+      <a href="/users">Find Dive Buddies</a>
+    </p>
 
-    <h1><%= title %></h1>
+    <form class="flex flex-col" action="/signout" method="post">
+      <input
+        class="text-blue-800 p-4 py-2 margin-2 padding-2"
+        type="submit"
+        value="Sign Out"
+      />
+    </form>
+
     <%- include('../_partial/footer') %>
   </body>
 </html>

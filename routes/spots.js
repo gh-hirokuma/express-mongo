@@ -79,15 +79,19 @@ router.get("/", function(req, res, next) {
 
 //画像を受けとる
 router.post("/", upload.single("file"), function(req, res, next) {
-  const { path } = res.req.file;
+  let realPath = "";
 
-  const tmpPath = path
-    .split("/")
-    .filter(path => path !== "public")
-    .join("/");
+  if (res.req.file) {
+    const { path } = res.req.file;
 
-  const realPath = `/${tmpPath}`;
-  console.log(realPath);
+    const tmpPath = path
+      .split("/")
+      .filter(path => path !== "public")
+      .join("/");
+
+    realPath = `/${tmpPath}`;
+    console.log(realPath);
+  }
 
   var insertingSpot = new Spot({
     ...req.body,
@@ -98,10 +102,18 @@ router.post("/", upload.single("file"), function(req, res, next) {
 
   // ドキュメントの保存
   insertingSpot.save(function(err) {
-    if (err) console.log(err);
+    if (err) {
+      console.log(err.errors);
+      const errors = [err.errors["name"], err.errors["location"]].map(error => {
+        return error.message;
+      });
 
-    res.redirect(req.baseUrl);
+      req.flash("error", errors);
+      res.redirect(`${req.baseUrl}/new`);
+    } else {
+      res.redirect(req.baseUrl);
+    }
   });
-})
+});
 
 module.exports = router;

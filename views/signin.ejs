@@ -31,6 +31,12 @@
             </section>
             <section class="w-1/2 flex flex-col p-12">
               <h2 class="font-bold text-lg text-blue-600 mb-8">Sign In</h2>
+              <% if(messages.error){ %>
+              <div class="alert alert-success" role="alert">
+                <%=messages.error %>
+              </div>
+              <br />
+              <% } %>
               <form class="flex flex-col" action="/auth" method="post">
                 <label class="text-xs" for="username">Username</label>
                 <input

@@ -8,17 +8,14 @@
     <ul>
       <% result.forEach((users, i) => { %>
       <li>
-        <%= users.username %>:
-        <% if (users.divelogs) { %>
-          <% users.divelogs.forEach((divelog, i) => { %>
-            <a href="/divelogs/<%= divelog._id %>"><%= `Dive # ${i + 1}` %></a>
-          <% }) %>
-        <% } %>
+        <%= users.username %>: <% if (users.divelogs) { %> <%
+        users.divelogs.forEach((divelog, i) => { %>
+        <a href="/divelogs/<%= divelog._id %>"><%= `Dive # ${i + 1}` %></a>
+        <% }) %> <% } %>
       </li>
       <% }); %>
     </ul>
 
     <%- include('../_partial/footer') %>
   </body>
-
 </html>

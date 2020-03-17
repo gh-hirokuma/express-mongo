@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html  lang="en">
+<html lang="en">
   <%- include('../_partial/head') %>
   <body>
-  <%- include('../_partial/header') %>
-  <div>
+    <%- include('../_partial/header') %>
+    <div>
+      <ul>
+        <% result.forEach((users, i) => { %>
+        <li>
+          <%= users.name %>: <% if (users.divelogs) { %> <%
+          users.divelogs.forEach((divelog, i) => { %>
+          <a href="/divelogs/<%= divelog._id %>"><%= `Dive # ${i + 1}` %></a>
+          <% }) %> <% } %>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
 
-
-    <ul>
-      <% result.forEach((users, i) => { %>
-      <li>
-        <%= users.name %>:
-        <% if (users.divelogs) { %>
-          <% users.divelogs.forEach((divelog, i) => { %>
-            <a href="/divelogs/<%= divelog._id %>"><%= `Dive # ${i + 1}` %></a>
-          <% }) %>
-        <% } %>
-      </li>
-      <% }); %>
-    </ul>
-
- </div>
-
-  <%- include('../_partial/footer') %>
+    <% if (isMe) { %> <a href="/divelogs/new">Log a Dive</a> <% } %> <%-
+    include('../_partial/footer') %>
   </body>
 </html>
