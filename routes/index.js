@@ -17,7 +17,11 @@ router.get("/failure", function(req, res, next) {
 });
 
 router.get("/signin", function(req, res, next) {
+  if (isAuthenticated(req.user)) {
+    res.redirect("/dashboard");
+  } else {
   res.render("signin", { title: "Express" });
+  }
 });
 
 router.get("/signup", function(req, res, next) {

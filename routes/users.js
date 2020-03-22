@@ -134,34 +134,32 @@ router.get("/", function(req, res, next) {
 router.post("/", function(req, res, next) {
   var insertingUser = new User({
     ...req.body,
-    password: req.body.password ? bcrypt.hashSync(req.body.password, 10) : "",
     created_at: moment().unix(),
     updated_at: moment().unix()
   });
 
-  //save new user info and redirect to login screen
-  insertingUser.save(function(err) {
-    if (err) {
+  error = insertingUser.validateSync();
+    if (error) {
       const errors = [
-        err.errors["username"],
-        err.errors["email"],
-        err.errors["password"]
+        error.errors["username"],
+        error.errors["email"],
+        error.errors["password"]
       ];
 
-      console.log(errors);
-
       const newErrors = errors
-        .filter(object => object)
-        .map(error => {
-          return error.message;
-        });
+      .filter(object => object)
+      .map(error => {
+        return error.message;
+      });
 
       req.flash("error", newErrors);
       res.redirect(`/signup`);
     } else {
+      insertingUser.password = bcrypt.hashSync(insertingUser.password, 10);
+      insertingUser.save({ validateBeforeSave: false }, function(err) {
       res.redirect("/signin");
-    }
-  });
+    });
+  }
 });
 
 module.exports = router;

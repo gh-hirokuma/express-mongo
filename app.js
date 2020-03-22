@@ -17,6 +17,7 @@ var spotsRouter = require("./routes/spots");
 var divelogsRouter = require("./routes/diveLog");
 var authRouter = require("./routes/auth");
 var dashboardRouter = require("./routes/dashboard");
+var dashboard_spotsRouter = require("./routes/dashboard_spots");
 var index_spotsRouter = require("./routes/index_spots");
 
 const { User } = require("./models/User");
@@ -33,6 +34,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/jquery", express.static(__dirname + "/node_modules/jquery/dist/"));
+app.use("/select2", express.static(__dirname + "/node_modules/select2/dist/"));
 
 //log in by session. not by cookie
 app.use(
@@ -90,6 +93,7 @@ app.use("/spots", spotsRouter);
 app.use("/divelogs", divelogsRouter);
 app.use("/auth", authRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/dashboard_spots", dashboard_spotsRouter);
 app.use("/index_spots", index_spotsRouter);
 
 // catch 404 and forward to error handler
@@ -107,5 +111,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
 
 module.exports = app;

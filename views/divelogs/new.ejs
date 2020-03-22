@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('../_partial/head') %>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="stylesheets/style.css" />
-  <title>Log a Dive</title>
   <body>
+    <script src="/js/diveLog.js"></script>
     <form action="/divelogs" method="POST">
       <label for="date">Date:</label><br />
       <input type="date" id="date" name="date" value="" /><br />

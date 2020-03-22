@@ -25,14 +25,14 @@ const User = new Schema({
   },
   password: {
     type: String,
-    required: true
-    // validate: {
-    //   validator: function(v) {
-    //     console.log(v);
-    //     return /^[a-z\d]{8,100}$/.test(v);
-    //   },
-    //   message: props => `Invalid password.`
-    // }
+    required: true,
+    validate: {
+      validator: function(v) {
+        console.log(v);
+        return /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/.test(v);
+      },
+      message: props => `Invalid password.`
+    }
   },
   divelogs: [{ type: Schema.Types.ObjectId, ref: "DiveLog" }],
   created_at: Number,
@@ -40,3 +40,4 @@ const User = new Schema({
 });
 
 exports.User = mongoose.model("User", User);
+

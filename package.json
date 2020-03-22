@@ -21,6 +21,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.0",
     "http-errors": "~1.7.3",
+    "jquery": "^3.4.1",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.9.4",
@@ -30,6 +31,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "postcss-cli": "^7.1.0",
+    "select2": "^4.0.13",
     "tailwindcss": "^1.2.0",
     "uuid": "^7.0.2"
   }
