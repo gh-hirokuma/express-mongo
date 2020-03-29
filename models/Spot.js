@@ -9,7 +9,7 @@ const Spot = new Schema({
     type: String,
     required: [true, "LOCATION is missing"]
   },
-  country_code:{
+  country:{
     type: String,
     required: [true, "Select COUNTRY"]
   },

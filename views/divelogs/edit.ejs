@@ -3,12 +3,30 @@
   <%- include('../_partial/head') %>
 
   <body>
+    <header class="w-full bg-gray-200 p-2 px-4 text-black flex justify-between items-center">
+      <h1 class="text-xl font-extrabold tracking-widest ml-4 font-mono text-blue-700">go2dive</h1>
+      <h1 class="text-2xl font-extrabold tracking-widest ml-4 font-mono text-blue-700">Edit a Dive</h1>
+      <a href="/signin" class="uppercase p-2 mr-4"><form action="/signout" method="post">
+        <input
+          type="submit"
+          value="Log Out"
+        />
+      </form>
+    </a>
+    </header>
   <script src="../js/diveLog.js"></script>
-    <%- include('/_partial/header') %>
-
+  <script src="/js/countries.js"></script>
+    
+  <section>
     <form action="/divelogs/<%= divelog._id %>?_method=PUT" method="POST">
       <label for="date">Date:</label><br>
       <input type="date" id="date" name="date" value="<%= divelog.date %>"><br>
+      <label for="name">Spot Name:</label><br />
+      <input type="text" id="spot_name" name="spot_name" value="<%= divelog.spot_name %>"><br />
+      <label for="location">Location:</label><br />
+      <input type="text" id="location_name" value="<%= divelog.location_name %>"><br />
+      <label for="country">Country:</label><br />
+      <select class="js-example-basic-single" name="country"><option value="<%= divelog.country %>" selected></option></select><br />
       <label for="entry">Entry:</label><br>
       <input type="text" id="entry" name="entry" value="<%= divelog.entry %>"><br>
       <label for="current">Current:</label><br>
@@ -29,7 +47,7 @@
       <input type="submit" value="Submit">
     </form>
 
-
+  </section>
 
     <%- include('../_partial/footer') %>
   </body>

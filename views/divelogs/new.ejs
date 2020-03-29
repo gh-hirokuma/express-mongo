@@ -2,11 +2,29 @@
 <html lang="en">
   <%- include('../_partial/head') %>
   <body>
+    <header class="w-full bg-gray-200 p-2 px-4 text-black flex justify-between items-center">
+      <h1 class="text-xl font-extrabold tracking-widest ml-4 font-mono text-blue-700">go2dive</h1>
+      <h1 class="text-2xl font-extrabold tracking-widest ml-4 font-mono text-blue-700">Log a Dive</h1>
+      <a href="/signin" class="uppercase p-2 mr-4"><form action="/signout" method="post">
+        <input
+          type="submit"
+          value="Log Out"
+        />
+      </form>
+    </a>
+    </header>
     <script src="/js/diveLog.js"></script>
+    <script src="/js/countries.js"></script>
+
     <form action="/divelogs" method="POST">
-      <label for="country"><select name="state">Country:</select></label>
       <label for="date">Date:</label><br />
       <input type="date" id="date" name="date" value="" /><br />
+      <label for="spot_name">Spot Name:</label><br />
+      <input type="text" id="spot_name" name="spot_name" value="" /><br />
+      <label for="location_name">Location:</label><br />
+      <input type="text" id="location_name" name="location_name" value="" /><br />
+      <label for="country">Country:</label><br />
+      <select class="js-example-basic-single" name="country" value=""></select><br />
       <label for="entry">Entry:</label><br />
       <input type="text" id="entry" name="entry" value="" /><br />
       <label for="current">Current:</label><br />

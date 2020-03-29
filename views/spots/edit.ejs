@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="stylesheets/style.css" />
+    <script src="/js/countries.js"></script>
     <title>Dive Spots</title>
   <body>
     <%- include('../_partial/header') %>
@@ -14,8 +15,8 @@
       <input type="text" id="name" name="name" value="<%= spot.name %>"><br>
       <label for="location">Location:</label><br>
       <input type="text" id="location" name="location" value="<%= spot.location %>"><br>
-      <label for="country_code">Country:</label><br>
-      <select class="js-example-basic-single" name="country"><input type="text" id="country_code" name="country" value="<%= spot.country_code %>" display ="none"></select><br>
+      <label for="country">Country:</label><br>
+      <select class="js-example-basic-single" name="country" value="<%= spot.country %>"></select><br>
       <!-- <label for="creaure">Creature:</label><br>
       <input type="text" id="creature" name="creature" value="<%= spot.creature %>"><br> -->
       <label for="Note">Note:</label><br>

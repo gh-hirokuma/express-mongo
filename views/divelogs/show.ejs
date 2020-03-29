@@ -42,7 +42,9 @@
         </div>
 
           <div class="flex flex-col justify-center text-center">
-            <h1><span class="text-white text-3xl font-mono mb-12 bold">Dive #1</span> <span class="text-white text-5xl font-mono mb-12 bold">location</span></h1> 
+            <h1 class="text-white text-3xl font-mono mb-12 bold">Dive #1</h1>
+            <h2 class="text-white uppercase text-5xl font-mono tracking-widest"><%= divelog.spot_name %></h2>
+            <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= divelog.location_name %>, <%= divelog.country %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Date: <%= divelog.date %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Entry: <%= divelog.entry %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Current: <%= divelog.current %></h2>
