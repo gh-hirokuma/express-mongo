@@ -2,6 +2,8 @@ const { Schema, mongoose } = require("../utils/db");
 
 const DiveLog = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
+  country_code: String,
+  location_name: String,
   date: Date,
   entry: String,
   current: String,

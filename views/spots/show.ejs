@@ -6,9 +6,10 @@
   <div class ="showInfo">
     <p class ="showSpotName"><%= spot.name %></p>
     <p><%= spot.location %></p>
+    <p><%= spot.country_code %></p>
     </p><img src="<%= spot.image %>" width="70%" class="center" alt ="<%= spot.name %>"></p>
-    <p class="bg-gray-700">Max Depth: <%= spot.depth %>m</p>
-    <p>Wildlife: <%= spot.creature %></p>
+    <!-- <p class="bg-gray-700">Max Depth: <%= spot.depth %>m</p>
+    <p>Wildlife: <%= spot.creature %></p> -->
     <p>Comment:<br/> <%= spot.note %></p>
     <p>Last Update: <%= spot.updated_at %></p>
   </div>

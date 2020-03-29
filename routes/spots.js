@@ -5,6 +5,28 @@ const moment = require("moment");
 const { v1 } = require("uuid");
 var multer = require("multer");
 
+//国選ばせる
+$(function() {
+  $.ajax({
+    type: "GET",
+    url: "../public/countries.json",
+    success: async function(data) {
+      for (country of data.data) {
+        const $option = $("<option>")
+          .val(country.code)
+          .text(country.name);
+
+        $('select[name="country"]').append($option);
+      }
+
+      $(".js-example-basic-single").select2();
+    },
+    fail: function(err) {
+      console.log(err);
+    }
+  });
+});
+
 //画像
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
