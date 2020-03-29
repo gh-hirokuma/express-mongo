@@ -57,3 +57,42 @@ header{
   justify-content: center;
   line-height: 5em;
 }
+
+.gnav {
+  display: flex;
+  height: 2rem;
+  margin: 0 auto;
+  width: 1000px;
+}
+.gnav > li {/*親階層のみ幅を25%にする*/
+  width: 25%;
+}
+/*全てのリスト・リンク共通*/
+.gnav li {
+  list-style: none;
+  position: relative;
+}
+.gnav li a {
+  background: #001b34;
+  border-right: 1px solid #eee;
+  color: #fff;
+  display: block;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+/*子階層以降共通*/
+.gnav li li {
+  height: 0;
+  overflow: hidden;
+  transition: .3s;
+}
+.gnav li li a {
+  border-top: 1px solid #eee;
+}
+.gnav li:hover > ul > li {
+  height: 2rem;
+  overflow: visible;
+}
