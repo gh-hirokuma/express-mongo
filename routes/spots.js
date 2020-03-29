@@ -5,6 +5,8 @@ const moment = require("moment");
 const { v1 } = require("uuid");
 var multer = require("multer");
 
+const countries = require("../public/countries.json");
+
 //画像
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -19,7 +21,8 @@ var upload = multer({ storage: storage });
 
 //新規追加
 router.get("/new", function(req, res, next) {
-  res.render("spots/new", { title: "Dive Spots" });
+  console.log(countries);
+  res.render("spots/new", { title: "Dive Spots", countries: countries.data });
 });
 
 //削除
