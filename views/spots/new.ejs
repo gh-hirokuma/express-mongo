@@ -17,7 +17,11 @@
       <label for="location">Location:</label><br />
       <input type="text" id="location" name="location" value="" /><br />
       <label for="country">Country:</label><br />
-      <select class="js-example-basic-single" name="country" value=""></select><br>
+      <select class="js-example-basic-single" name="country" value="">
+        <% countries.forEach(country => { %>
+        <option><%= country.name %></option>
+        <% }) %> </select
+      ><br />
       <label for="Note">Note:</label><br />
       <input type="text" id="note" name="note" value="" /><br />
       <label for="depth">Depth:</label><br />
