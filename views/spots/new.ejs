@@ -19,7 +19,7 @@
       <label for="country">Country:</label><br />
       <select class="js-example-basic-single" name="country" value="">
         <% countries.forEach(country => { %>
-        <option><%= country.name %></option>
+        <option value="<%= country.name %>"><%= country.name %></option>
         <% }) %> </select
       ><br />
       <label for="Note">Note:</label><br />
