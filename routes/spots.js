@@ -5,6 +5,8 @@ const moment = require("moment");
 const { v1 } = require("uuid");
 var multer = require("multer");
 
+const countries = require("../public/countries.json");
+
 //画像
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -19,7 +21,8 @@ var upload = multer({ storage: storage });
 
 //新規追加
 router.get("/new", function(req, res, next) {
-  res.render("spots/new", { title: "Dive Spots" });
+  console.log(countries);
+  res.render("spots/new", { title: "Dive Spots", countries: countries.data });
 });
 
 //削除
@@ -31,25 +34,27 @@ router.delete("/:spotId", function(req, res, next) {
   });
 });
 
+//更新
+router.get("/:spotId/edit", function(req, res, next) {
+  const { spotId } = req.params;
+  Spot.find({ _id: spotId }, (err, result) => {
+    console.log(result);
+    console.log(countries);
+    res.render("spots/edit", {
+      title: "Dive Spots",
+      slug: "spots",
+      spot: result[0],
+      countries: countries.data,
+    });
+  });
+});
+
 //更新後の結果を表示
 router.put("/:spotId", function(req, res, next) {
   const { spotId } = req.params;
 
   Spot.update({ _id: spotId }, { $set: { ...req.body } }, (err, result) => {
     res.redirect(`${req.baseUrl}/${spotId}`);
-  });
-});
-
-//更新
-router.get("/:spotId/edit", function(req, res, next) {
-  const { spotId } = req.params;
-  Spot.find({ _id: spotId }, (err, result) => {
-    console.log(result);
-    res.render("spots/edit", {
-      title: "Dive Spots",
-      slug: "spots",
-      spot: result[0]
-    });
   });
 });
 

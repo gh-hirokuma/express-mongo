@@ -16,6 +16,25 @@
     <script src="/js/diveLog.js"></script>
     <script src="/js/countries.js"></script>
 
+    <section class="relative w-full h-screen">
+      <div class="absolute w-full h-full bg-gray-700 opacity-50"></div>
+        <div class="absolute bg-transparent w-full h-full flex flex-col justify-center">
+        <div class="container flex px-4 py-3 justify-around absolute top-0">
+          
+        </div>
+
+        <ul class="gnav">
+          <li class='bg-blue-300 text-blue-600 text-xl rouned'>
+              <a href="" class='bg-blue-300 text-blue-600 text-xl font-mono rouned hover:bg-blue-200'>Menu</a>
+              <ul>
+                  <li><a href="/users/profile" class='bg-blue-300 text-blue-600 text-xl font-mono rouned hover:bg-blue-200'>My Profile</a></li>
+                  <li><a href="/spots" class='bg-blue-300 text-blue-600 text-xl font-mono rouned hover:bg-blue-200'>Find Spots</a></li>
+                  <li><a href="/users" class='bg-blue-300 text-blue-600 text-xl font-mono rouned hover:bg-blue-200'>Find Buddies</a></li>
+              </ul>
+          </li>
+        </ul>
+  
+          <div class="flex flex-col justify-center text-center">
     <form action="/divelogs" method="POST">
       <label for="date">Date:</label><br />
       <input type="date" id="date" name="date" value="" /><br />
@@ -24,7 +43,11 @@
       <label for="location_name">Location:</label><br />
       <input type="text" id="location_name" name="location_name" value="" /><br />
       <label for="country">Country:</label><br />
-      <select class="js-example-basic-single" name="country" value=""></select><br />
+      <select class="js-example-basic-single" name="country" value="">
+        <% countries.forEach(country => { %>
+        <option value="<%= country.name %>"><%= country.name %></option>
+        <% }) %> </select
+      ><br />
       <label for="entry">Entry:</label><br />
       <input type="text" id="entry" name="entry" value="" /><br />
       <label for="current">Current:</label><br />
@@ -54,7 +77,15 @@
 
       <input type="submit" value="Submit" />
     </form>
-
+  </div>
+</div>
+</div>
+<img
+class="object-cover w-full h-full"
+src="https://images.unsplash.com/photo-1506652831795-e623e29b8af9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80"
+alt="sea_anemone"
+/>
+</section>
     <%- include('../_partial/footer') %>
   </body>
 </html>

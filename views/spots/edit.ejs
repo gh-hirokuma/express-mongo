@@ -7,27 +7,51 @@
     <link rel="stylesheet" href="stylesheets/style.css" />
     <script src="/js/countries.js"></script>
     <title>Dive Spots</title>
+
   <body>
-    <%- include('../_partial/header') %>
+    <header class="w-full bg-gray-200 p-2 px-4 text-black flex justify-between items-center">
+      <h1 class="text-xl font-extrabold tracking-widest ml-4 font-mono text-blue-700">go2dive</h1>
+      <h1 class="text-2xl font-extrabold tracking-widest ml-4 font-mono text-blue-700">Edit Spot Info</h1>
+      <a href="/signin" class="uppercase p-2 mr-4"><form action="/signout" method="post">
+        <input type="submit" value="Log Out"/>
+      </form></a>
+    </header>
+      <span class ="linkbtn"><a href ='/spots/new'>Add Spot</a></span>
+      <section class="relative w-full">
+        <div class="absolute bg-transparent w-full bg-blue-900 flex flex-col justify-center">
+          <ul class="gnav">
+            <li>
+              <a href="">Menu</a>
+              <ul>
+                <li><a href="/spots">Back to Spot List</a></li>
+                <li><a href="/users">Find Buddies</a></li>
+                <li><a href="/dashboard">Back Home</a></li>
+              </ul>
+            </li>
+          </ul>
 
-    <form action="/spots/<%= spot._id %>?_method=PUT" method="POST">
-      <label for="fname">Name:</label><br>
-      <input type="text" id="name" name="name" value="<%= spot.name %>"><br>
-      <label for="location">Location:</label><br>
-      <input type="text" id="location" name="location" value="<%= spot.location %>"><br>
-      <label for="country">Country:</label><br>
-      <select class="js-example-basic-single" name="country" value="<%= spot.country %>"></select><br>
-      <!-- <label for="creaure">Creature:</label><br>
-      <input type="text" id="creature" name="creature" value="<%= spot.creature %>"><br> -->
-      <label for="Note">Note:</label><br>
-      <input type="text" id="note" name="note" value="<%= spot.note %>"><br>
-      <!-- <label for="depth">Depth:</label><br>
-      <input type="number" id="depth" name="depth" value="<%= spot.depth %>"><br> -->
-      <label for="image">Image:</label><br>
-      <input type="file" id="file" name="file" value="<%= spot.image %>" accept="image/png, image/jpeg"><br>
-      <input type="submit" value="Submit">
-    </form>
+          <form action="/spots/<%= spot._id %>?_method=PUT" method="POST">
+            <label for="fname">Name:</label><br>
+            <input type="text" id="name" name="name" value="<%= spot.name %>"><br>
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" name="location" value="<%= spot.location %>"><br>
+            <label for="country">Country:</label><br>
+            <select class="js-example-basic-single" name="country">
+              <% countries.forEach(country => { %>
+              <option value="<%= country.name %>" <% if( country.name === spot.country) {%>selected<% } %>>
+                <%= country.name %>
+              </option><% }) %>
+            </select><br >
+            <label for="Note">Note:</label><br>
+            <input type="text" id="note" name="note" value="<%= spot.note %>"><br>
+            <label for="image">Image:</label><br>
+            <input type="file" id="file" name="file" value="<%= spot.image %>" accept="image/png, image/jpeg"/><br>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </section>
 
-    <%- include('../_partial/footer') %>
+      <%- include('../_partial/footer') %> 
+      <!-- ↑コレ読み込まれてない -->
   </body>
 </html>

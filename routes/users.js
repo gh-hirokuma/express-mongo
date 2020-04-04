@@ -2,6 +2,7 @@ var express = require("express");
 const bcrypt = require("bcrypt");
 var router = express.Router();
 const { User } = require("../models/User");
+const { DiveLog } = require("../models/DiveLog");
 const { isAuthenticated } = require("../utils/auth");
 const moment = require("moment");
 
@@ -71,7 +72,10 @@ router.get("/:userId/logs", function(req, res, next) {
 router.get("/profile", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { _id } = req.user;
-    User.findOne({ _id: _id }, function(err, user) {
+    // const { divelog_user } = req.divelog;
+    User.findOne({ _id: _id }, function(err, user)
+    // DiveLog.findOne({ divelog_user: user }, function(err, user)
+    {
       const data = {
         _id: user._id,
         username: user.username,
@@ -80,7 +84,8 @@ router.get("/profile", function(req, res, next) {
         country: user.country,
         email: user.email,
         created_at: user.created_at,
-        updated_at: user.updated_at
+        updated_at: user.updated_at,
+        // divelog: divelog.user,
       };
       res.render("users/profile", {
         title: "User",

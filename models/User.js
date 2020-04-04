@@ -1,5 +1,4 @@
 const { Schema, mongoose } = require("../utils/db");
-const { DiveLog } = require("./DiveLog");
 
 const User = new Schema({
   username: {
