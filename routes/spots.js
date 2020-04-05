@@ -4,8 +4,10 @@ const { Spot } = require("../models/Spot");
 const moment = require("moment");
 const { v1 } = require("uuid");
 var multer = require("multer");
-
 const countries = require("../public/countries.json");
+const MongoPaging = require('mongo-cursor-pagination');
+const mongoose = require('mongoose');
+const counterSchema = new mongoose.Schema({ counter: Number });
 
 //画像
 var storage = multer.diskStorage({
@@ -73,12 +75,18 @@ router.get("/:spotId", function(req, res, next) {
 //一覧
 /* GET users listing. */
 router.get("/", function(req, res, next) {
+  counterSchema.plugin(MongoPaging.mongoosePlugin);
   Spot.find({}, (err, result) => {
     res.render("spots/index", {
       title: "Dive Spots",
       slug: "spots",
       result: result
     });
+  });
+  const counter = mongoose.model('counter',counterSchema);
+  counter.paginate({ limit : 10 })
+  .then((result) => {
+    console.log(result);
   });
 });
 

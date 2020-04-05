@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { User } = require("../models/User");
 const { DiveLog } = require("../models/DiveLog");
+const { Spot } = require("../models/Spot");
 const { isAuthenticated } = require("../utils/auth");
 const moment = require("moment");
 const countries = require("../public/countries.json");
@@ -9,12 +10,14 @@ const countries = require("../public/countries.json");
 //新規追加
 router.get("/new", function(req, res, next) {
   if (isAuthenticated(req.user)) {
+    Spot.find({ name: Spot.name, loation:Spot.location }, (err, result) => {
     console.log(countries);
-    res.render("divelogs/new", { title: "Log a Dive", countries: countries.data });
-  } else {
+    res.render("divelogs/new", { title: "Log a Dive", countries: countries.data, locaion_name: Spot.location, spot_name: Spot.name });
+    });
+    } else {
     res.redirect("/signin");
   }
-});
+  });
 
 router.post("/", function(req, res, next) {
   if (isAuthenticated(req.user)) {

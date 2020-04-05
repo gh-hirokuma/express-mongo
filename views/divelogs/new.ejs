@@ -14,14 +14,13 @@
     </a>
     </header>
     <script src="/js/diveLog.js"></script>
+    <script src="/js/spots.js"></script>
     <script src="/js/countries.js"></script>
 
     <section class="relative w-full h-screen">
       <div class="absolute w-full h-full bg-gray-700 opacity-50"></div>
         <div class="absolute bg-transparent w-full h-full flex flex-col justify-center">
-        <div class="container flex px-4 py-3 justify-around absolute top-0">
-          
-        </div>
+        <div class="container flex px-4 py-3 justify-around absolute top-0"></div>
 
         <ul class="gnav">
           <li class='bg-blue-300 text-blue-600 text-xl rouned'>
@@ -33,51 +32,55 @@
               </ul>
           </li>
         </ul>
-  
-          <div class="flex flex-col justify-center text-center">
-    <form action="/divelogs" method="POST">
-      <label for="date">Date:</label><br />
-      <input type="date" id="date" name="date" value="" /><br />
-      <label for="spot_name">Spot Name:</label><br />
-      <input type="text" id="spot_name" name="spot_name" value="" /><br />
-      <label for="location_name">Location:</label><br />
-      <input type="text" id="location_name" name="location_name" value="" /><br />
-      <label for="country">Country:</label><br />
-      <select class="js-example-basic-single" name="country" value="">
-        <% countries.forEach(country => { %>
-        <option value="<%= country.name %>"><%= country.name %></option>
-        <% }) %> </select
-      ><br />
-      <label for="entry">Entry:</label><br />
-      <input type="text" id="entry" name="entry" value="" /><br />
-      <label for="current">Current:</label><br />
-      <input type="text" id="current" name="current" value="" /><br />
-      <label for="weather">Weather:</label><br />
-      <input type="text" id="weather" name="weather" value="" /><br />
-      <label for="air_temperature">Air Temperature:</label> ℃<br />
-      <input
-        type="number"
-        id="air_temperature"
-        name="air_temperature"
-        value=""
-      /><br />
-      <label for="water_temperature">Water Temperature:</label><br />
-      <input
-        type="number"
-        id="water_temperature"
-        name="water_temperature"
-        value=""
-      /><br />
-      <label for="depth">Max Depth:</label><br />
-      <input type="number" id="depth" name="depth" value="" /><br />
-      <label for="duration">Duration:</label><br />
-      <input type="number" id="duration" name="duration" value="" /><br />
-      <label for="note">Note:</label><br />
-      <input type="string" id="note" name="note" value="" /><br />
 
-      <input type="submit" value="Submit" />
-    </form>
-  </div>
+        <div class="flex flex-col justify-center text-center">
+          <form action="/divelogs" method="POST">
+          <label for="date">Date:</label><br />
+          <input type="date" id="date" name="date" value="" /><br />
+          <label for="spot_name">Spot Name:</label><br />
+          <select class="js-example-basic-single" name="spot_name" value="">
+            <%= Spot.name.forEach(spot => { %>
+              <option value="<%= spot_name %>"><%= spot_name %></option>
+            <% }) %>
+          </select><br />
+          <label for="location_name">Location:</label><br />
+          <input type="text" id="location_name" name="location_name" value="" /><br />
+          <label for="country">Country:</label><br />
+          <select class="js-example-basic-single" name="country" value="">
+            <% countries.forEach(country => { %>
+            <option value="<%= country.name %>"><%= country.name %></option>
+            <% }) %>
+          </select><br />
+          <label for="entry">Entry:</label><br />
+          <input type="text" id="entry" name="entry" value="" /><br />
+          <label for="current">Current:</label><br />
+          <input type="text" id="current" name="current" value="" /><br />
+          <label for="weather">Weather:</label><br />
+          <input type="text" id="weather" name="weather" value="" /><br />
+          <label for="air_temperature">Air Temperature:</label><br />
+          <input
+            type="number"
+            id="air_temperature"
+            name="air_temperature"
+            value=""
+          /> ℃<br />
+          <label for="water_temperature">Water Temperature:</label><br />
+          <input
+            type="number"
+            id="water_temperature"
+            name="water_temperature"
+            value=""
+          /> ℃<br />
+          <label for="depth">Max Depth:</label><br />
+          <input type="number" id="depth" name="depth" value="" /> m<br />
+          <label for="duration">Duration:</label><br />
+          <input type="number" id="duration" name="duration" value="" /> mins<br />
+          <label for="note">Note:</label><br />
+          <input type="string" id="note" name="note" value="" /><br />
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
 </div>
 </div>
 <img
