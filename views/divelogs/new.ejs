@@ -37,18 +37,22 @@
           <form action="/divelogs" method="POST">
           <label for="date">Date:</label><br />
           <input type="date" id="date" name="date" value="" /><br />
-          <label for="spot_name">Spot Name:</label><br />
-          <select class="js-example-basic-single" name="spot_name" value="">
-            <%= Spot.name.forEach(spot => { %>
-              <option value="<%= spot_name %>"><%= spot_name %></option>
-            <% }) %>
-          </select><br />
-          <label for="location_name">Location:</label><br />
-          <input type="text" id="location_name" name="location_name" value="" /><br />
           <label for="country">Country:</label><br />
           <select class="js-example-basic-single" name="country" value="">
             <% countries.forEach(country => { %>
             <option value="<%= country.name %>"><%= country.name %></option>
+            <% }) %>
+          </select><br />
+          <label for="location_name">Location:</label><br />
+          <select class="js-example-basic-single" name="locaion_name" value="">
+            <% spots.forEach(spots => { %>
+              <option value="<%= spots.location %>"><%= spots.location %></option>
+            <% }) %>
+          </select><br />
+          <label for="spot_name">Spot Name:</label><br />
+          <select class="js-example-basic-single" name="spot_name" value="">
+            <% spots.forEach(spot => { %>
+              <option value="<%= spot.name %>"><%= spot.name %></option>
             <% }) %>
           </select><br />
           <label for="entry">Entry:</label><br />

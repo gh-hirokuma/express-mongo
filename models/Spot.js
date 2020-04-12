@@ -1,4 +1,5 @@
 const { Schema, mongoose } = require("../utils/db");
+const MongoPaging = require('mongo-cursor-pagination');
 
 const Spot = new Schema({
   name: {
@@ -18,7 +19,9 @@ const Spot = new Schema({
   depth: Number,
   image: String,
   created_at: Number,
-  updated_at: Number
+  updated_at: Number,
 });
+
+Spot.plugin(MongoPaging.mongoosePlugin);
 
 exports.Spot = mongoose.model("Spot", Spot);

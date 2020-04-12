@@ -33,13 +33,19 @@
             </ul>
         </li>
       </ul>
-            <div class="flex flex-col justify-center text-center">
-            <h1 class="text-white uppercase text-3xl font-mono tracking-widest"><%= result.username %></h1>
-            <small class="text-white uppercase text-2xl font-mono tracking-widest"><%= result.certificate %></small>
-            <small class="text-white uppercase text-2xl font-mono tracking-widest">Country: <%= result.country %></small>
-            <small class="text-white uppercase text-2xl font-mono tracking-widest">Total Dives: </small>
-            </div>
-        </div>
+      <div class="flex flex-col justify-center text-center">
+        <h1 class="text-white uppercase text-3xl font-mono tracking-widest"><%= result.username %></h1>
+        <small class="text-white uppercase text-2xl font-mono tracking-widest"><%= result.certificate %></small>
+        <small class="text-white uppercase text-2xl font-mono tracking-widest">Country: <%= result.country %></small>
+        <small class="text-white uppercase text-2xl font-mono tracking-widest">Total Dives: <%= result.divelogs.length %></small>
+      </div>
+      <div>
+        <form action="/users/<%= result._id %>?_method=DELETE" method="POST">
+          <input type="submit" value="Leave go2dive" />
+        </form>
+      </div>
+
+    </div>
         <img
           class="object-cover w-full h-full"
           src="https://images.unsplash.com/photo-1569933132718-d29088ecb9fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80"
@@ -47,125 +53,6 @@
         />
     </section>
 
-    <section class="w-full flex items-center">
-      <div class="p-4 uppercase border-b-4 border-blue-600 text-xl text-blue-600 font-bold w-full text-center">my divelog</div>
-    </section>
-    <section class="w-full bg-blue-800 p-2 md:p-4">
-      <section class="w-full p-1 md:p-4 container mx-auto">
-        <ul class="flex flex-row flex-wrap">
-          <li class="w-full md:w-1/3 p-2 md:p-4">
-            <div class="relative bg-gray-900 h-64">
-              <div
-                class="absolute bg-gray-900 opacity-75 h-full w-full"
-              ></div>
-              <div
-                class="absolute h-full w-full flex justify-center items-center text-white text-xl"
-              >
-                LOG #1
-              </div>
-              <img
-                class="object-cover h-64 w-full"
-                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                alt="card1"
-              />
-            </div>
-          </li>
-          <li class="w-full md:w-1/3 p-2 md:p-4">
-            <div class="relative bg-gray-900 h-64">
-              <div
-                class="absolute bg-gray-900 opacity-75 h-full w-full"
-              ></div>
-              <div
-                class="absolute h-full w-full flex justify-center items-center text-white text-xl"
-              >
-                LOG #2
-              </div>
-              <img
-                class="object-cover h-64 w-full"
-                src="https://images.unsplash.com/photo-1544551763-8dd44758c2dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                alt="card1"
-              />
-            </div>
-          </li>
-          <li class="w-full md:w-1/3 p-2 md:p-4">
-            <div class="relative bg-gray-900 h-64">
-              <div
-                class="absolute bg-gray-900 opacity-75 h-full w-full"
-              ></div>
-              <div
-                class="absolute h-full w-full flex justify-center items-center text-white text-xl"
-              >
-                LOG #3
-              </div>
-              <img
-                class="object-cover h-64 w-full"
-                src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                alt="card1"
-              />
-            </div>
-          </li>
-          <li class="w-full md:w-1/3 p-2 md:p-4">
-            <div class="relative bg-gray-900 h-64">
-              <div
-                class="absolute bg-gray-900 opacity-75 h-full w-full"
-              ></div>
-              <div
-                class="absolute h-full w-full flex justify-center items-center text-white text-xl"
-              >
-                LOG #4
-              </div>
-              <img
-                class="object-cover h-64 w-full"
-                src="https://images.unsplash.com/photo-1570367364062-4ab01ebf0954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
-                alt="card1"
-              />
-            </div>
-          </li>
-          <li class="w-full md:w-1/3 p-2 md:p-4">
-            <div class="relative bg-gray-900 h-64">
-              <div
-                class="absolute bg-gray-900 opacity-75 h-full w-full"
-              ></div>
-              <div
-                class="absolute h-full w-full flex justify-center items-center text-white text-xl"
-              >
-                LOG #5
-              </div>
-              <img
-                class="object-cover h-64 w-full"
-                src="https://images.unsplash.com/photo-1579981633051-529120895bac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                alt="card1"
-              />
-            </div>
-          </li>
-          <li class="w-full md:w-1/3 p-2 md:p-4">
-            <div class="relative bg-gray-900 h-64">
-              <div
-                class="absolute bg-gray-900 opacity-75 h-full w-full"
-              ></div>
-              <div
-                class="absolute h-full w-full flex justify-center items-center text-white text-xl"
-              >
-                LOG #6
-              </div>
-              <img
-                class="object-cover h-64 w-full"
-                src="https://images.unsplash.com/photo-1545604698-568084db231c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80"
-                alt="card1"
-              />
-            </div>
-          </li>
-        </ul>
-      </section>
-    </section>
-
-
-
-    <div>
-      <form action="/users/<%= result._id %>?_method=DELETE" method="POST">
-        <input type="submit" value="Leave go2dive" />
-      </form>
-    </div>
 
     </form>
     <%- include('../_partial/footer') %>

@@ -10,9 +10,14 @@ const countries = require("../public/countries.json");
 //新規追加
 router.get("/new", function(req, res, next) {
   if (isAuthenticated(req.user)) {
-    Spot.find({ name: Spot.name, loation:Spot.location }, (err, result) => {
-    console.log(countries);
-    res.render("divelogs/new", { title: "Log a Dive", countries: countries.data, locaion_name: Spot.location, spot_name: Spot.name });
+    Spot.find({}, (err, result) => {
+    // console.log(countries);
+    res.render("divelogs/new", {
+      title: "Log a Dive",
+      countries: countries.data,
+      location: result,
+      spots: result
+    });
     });
     } else {
     res.redirect("/signin");
@@ -83,13 +88,17 @@ router.get("/:divelogId/edit", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { divelogId } = req.params;
     DiveLog.find({ _id: divelogId }, (err, result) => {
-      console.log(result);
+      Spot.find({}, (err, result) => {
+        console.log(result);
       console.log(countries);
       res.render("divelogs/edit", {
         title: "Edit Log",
         slug: "divelogs",
         divelog: result[0],
         countries: countries.data,
+        location: result,
+        spots: result
+      });
       });
     });
   } else {

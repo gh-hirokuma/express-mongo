@@ -36,6 +36,7 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/jquery", express.static(__dirname + "/node_modules/jquery/dist/"));
 app.use("/select2", express.static(__dirname + "/node_modules/select2/dist/"));
+app.use("/mongo-cursor-pagination", express.static(__dirname + "/node_modules/mongo-cursor-pagination/dist/"));
 
 //log in by session. not by cookie
 app.use(

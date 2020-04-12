@@ -15,14 +15,13 @@
     </a>
     </header>
   <script src="../js/diveLog.js"></script>
+  <script src="/js/spots.js"></script>
   <script src="/js/countries.js"></script>
 
   <section class="relative w-full h-screen">
     <div class="absolute w-full h-full bg-gray-700 opacity-50"></div>
       <div class="absolute bg-transparent w-full h-full flex flex-col justify-center">
-      <div class="container flex px-4 py-3 justify-around absolute top-0">
-        
-      </div>
+      <div class="container flex px-4 py-3 justify-around absolute top-0"></div>
       <ul class="gnav">
         <li class='bg-blue-300 text-blue-600 text-xl rouned'>
             <a href="" class='bg-blue-300 text-blue-600 text-xl font-mono rouned hover:bg-blue-200'>Menu</a>
@@ -43,16 +42,26 @@
     <form action="/divelogs/<%= divelog._id %>?_method=PUT" method="POST">
       <label for="date">Date:</label><br>
       <input type="date" id="date" name="date" value="<%= divelog.date %>"><br>
-      <label for="name">Spot Name:</label><br>
-      <input type="text" id="spot_name" name="spot_name" value="<%= divelog.spot_name %>"><br>
-      <label for="location">Location:</label><br>
-      <input type="text" id="location_name" value="<%= divelog.location_name %>"><br>
       <label for="country">Country:</label><br>
       <select class="js-example-basic-single" name="country">
         <% countries.forEach(country => { %>
-        <option value="<%= country.name %>" <% if( country.name === divelog.country) {%>selected<% }%>>
-          <%= country.name %>
-        </option><% }) %>
+          <option value="<%= country.name %>" <% if( country.name === divelog.country) {%>selected<% }%>>
+            <%= country.name %>
+          </option><% }) %>
+      </select><br>
+      <label for="location">Location:</label><br>
+      <select class="js-example-basic-single" name="locaion_name">
+        <% spots.forEach(spots => { %>
+          <option value="<%= spots.locatione %>" <% if( spots.location === divelog.location_name) {%>selected<% }%>>
+            <%= spots.location %>
+          </option><% }) %>
+      </select><br />
+      <label for="spot_name">Spot Name:</label><br>
+      <select class="js-example-basic-single" name="spot_name" value="">
+        <% spots.forEach(spot => { %>
+          <option value="<%= spot.name %>" <% if( spot.name === divelog.spot_name) {%>selected<% }%>>
+            <%= spot.name %>
+          </option><% }) %>
       </select><br>
       <label for="entry">Entry:</label><br>
       <input type="text" id="entry" name="entry" value="<%= divelog.entry %>"><br>

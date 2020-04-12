@@ -2,7 +2,7 @@ var express = require("express");
 const bcrypt = require("bcrypt");
 var router = express.Router();
 const { User } = require("../models/User");
-const { DiveLog } = require("../models/DiveLog");
+// const { DiveLog } = require("../models/DiveLog");
 const { isAuthenticated } = require("../utils/auth");
 const moment = require("moment");
 
@@ -47,7 +47,7 @@ router.get("/:userId/edit", function(req, res, next) {
   }
 });
 
-/* GET user listing. */
+/* GET user's log. */
 router.get("/:userId/logs", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { _id } = req.user;
@@ -62,19 +62,17 @@ router.get("/:userId/logs", function(req, res, next) {
         result,
         isMe
       });
-    }).populate("divelogs");
+    }).populate("users");
   } else {
     res.redirect("/signin");
   }
 });
 
-//my profile
+// my profile
 router.get("/profile", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { _id } = req.user;
-    // const { divelog_user } = req.divelog;
     User.findOne({ _id: _id }, function(err, user)
-    // DiveLog.findOne({ divelog_user: user }, function(err, user)
     {
       const data = {
         _id: user._id,
@@ -85,12 +83,12 @@ router.get("/profile", function(req, res, next) {
         email: user.email,
         created_at: user.created_at,
         updated_at: user.updated_at,
-        // divelog: divelog.user,
+        divelogs: user.divelogs,
       };
       res.render("users/profile", {
         title: "User",
         slug: "users",
-        result: data
+        result: data,
       });
     });
   } else {

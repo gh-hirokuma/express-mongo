@@ -43,7 +43,9 @@
         </ul>
 
           <div class="flex flex-col justify-center text-center">
-            <h2 class="text-white uppercase text-5xl font-mono tracking-widest"><%= divelog.spot_name %></h2>
+            <h2 class="text-white uppercase text-5xl font-mono tracking-widest">
+              <a href="/spots/<%= spots.id%>"><%= divelog.spot_name %></a> 
+            </h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= divelog.location_name %>, <%= divelog.country %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Date: <%= divelog.date %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Entry: <%= divelog.entry %></h2>

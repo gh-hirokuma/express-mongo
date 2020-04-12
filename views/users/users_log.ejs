@@ -30,19 +30,19 @@
                     <li><a href="/spots">Find Spots</a></li>
                     <li><a href="/users">Find Buddies</a></li>
                     <li><a href="/users/profile">My Profile</a></li>
-                    <li><a href="/dashboard">Home</a></li>   
+                    <li><a href="/dashboard">Home</a></li>
                 </ul>
             </li>
           </ul>
           <h1 class="text-xl font-extrabold tracking-widest ml-4 font-mono text-blue-700"><% if (isMe) { %> <a href="/divelogs/new">Log a Dive</a> <% } %></h1>
           <div class="flex flex-col justify-center text-center">
-            
+
       <ul>
         <% result.forEach((users, i) => { %>
         <li class="text-white uppercase text-5xl font-mono tracking-widest">
           <%= users.name %> <% if (users.divelogs) { %> <%
           users.divelogs.forEach((divelog, i) => { %>
-          <a href="/divelogs/<%= divelog._id %>"><%= `Dive # ${i + 1}` %></a>
+          <a href="/divelogs/<%= divelog._id %>"><%= `Dive #${i + 1}` %> <%= divelog.spot_name %></a><br>
           <% }) %> <% } %>
         </li>
         <% }); %>
