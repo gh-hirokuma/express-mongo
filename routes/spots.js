@@ -71,14 +71,13 @@ router.get("/:spotId", function(req, res, next) {
 //一覧
 /* GET users listing. */
 router.get("/", function(req, res, next) {
-  Spot.paginate({ limit : 10 }).then((result) => {
+  Spot.paginate({ limit : 10, next: req.next}).then((result) => {
     console.log(result);
   // Spot.find({}, (err, result) => {
     res.render("spots/index", {
       title: "Dive Spots",
       slug: "spots",
-      result: result,
-      next: next,
+      ...result,
     });
   });
 });

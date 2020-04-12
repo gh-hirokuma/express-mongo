@@ -16,7 +16,7 @@
     </header>
     <span class ="linkbtn"><a href ='/spots/new'>Add a Spot</a></span>
     <section class="relative w-full">
-        <div class="absolute bg-transparent w-full bg-blue-900 flex flex-col justify-center">
+      <div class="absolute bg-transparent w-full bg-blue-900 ">
           <ul class="gnav">
             <li>
               <a href="">Menu</a>
@@ -26,22 +26,16 @@
               </ul>
             </li>
           </ul>
-
-            <nav aria-label="...">
-              <ul id="pagination"  class="pagination">
-                <% result.forEach((spot) => { %>
-                  <h1 class="text-white uppercase text-3xl font-mono tracking-widest"><a href ='/spots/<%= spot._id %>'><%= spot.name %></a></h1>
-                  <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= spot.location %>, <%= spot.country %></h2>
+          <div class="flex flex-col justify-center items-center">
+                <% results.forEach((spot) => { %>
+                  <h1 class="text-center text-white uppercase text-3xl font-mono tracking-widest"><a href ='/spots/<%= spot._id %>'><%= spot.name %></a></h1>
+                  <h2 class="text-center text-white uppercase text-2xl font-mono tracking-widest"><%= spot.location %>, <%= spot.country %></h2>
                   <img src="<%= spot.image %>" width="30%" alt ="<%= spot.name %>">
                 <% }); %>
-                <li class="page-conent"><a class="page-link" href="#">Previous</a></li>
-                <% for(var i = 1; i <= pages ; i++) {%>
-                  <li class="page-item"><a href="/page/<%=i%>"><%=i%></a></li>
-                <% } %>
-                <li class="page-content"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
-        </div>
+                <a href="/spots?next=eyIkb2lkIjoiNWU4NzNhYmJmMTBmZmZiZWRkYTI2OTliIn0">next</a>
+          </div>
+
+      </div>
 
     </section>
 
