@@ -23,7 +23,7 @@
       <div class="absolute w-full h-full bg-gray-700 opacity-50"></div>
         <div class="absolute bg-transparent w-full h-full flex flex-col justify-center">
         <div class="container flex px-4 py-3 justify-around absolute top-0">
-          
+
         </div>
         <div>
           <a href ='/divelogs/<%= divelog._id %>/edit'>edit</a>
@@ -44,7 +44,7 @@
 
           <div class="flex flex-col justify-center text-center">
             <h2 class="text-white uppercase text-5xl font-mono tracking-widest">
-              <a href="/spots/<%= spots.id%>"><%= divelog.spot_name %></a> 
+              <a href="/spots/<%= spots._id%>"><%= divelog.spot_name %></a>
             </h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= divelog.location_name %>, <%= divelog.country %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Date: <%= divelog.date %></h2>
@@ -66,7 +66,7 @@
       />
   </section>
 
-
+=
 
   <%- include('../_partial/footer') %>
   </body>

@@ -71,7 +71,10 @@ router.get("/:spotId", function(req, res, next) {
 //一覧
 /* GET users listing. */
 router.get("/", function(req, res, next) {
-  Spot.paginate({ limit : 10, next: req.next}).then((result) => {
+  const option = req.query.hasOwnProperty("next")
+  ? { next: req.query.next }
+  : {};
+  Spot.paginate({ limit : 10, ...option}).then((result) => {
     console.log(result);
   // Spot.find({}, (err, result) => {
     res.render("spots/index", {
