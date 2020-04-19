@@ -30,6 +30,7 @@ router.post("/", function(req, res, next) {
     var insertingDiveLog = new DiveLog({
       ...req.body,
       user: req.user._id,
+      spot: req.spot._id,
       created_at: moment().unix(),
       updated_at: moment().unix()
     });
@@ -114,8 +115,8 @@ router.get("/:divelogId", function(req, res, next) {
       res.render("divelogs/show", {
         title: "Dive Log",
         slug: "divelogs",
-        divelog: result[0]
-      });
+        divelog: result[0],
+      }).populate("spot");
     });
   } else {
     res.redirect("/signin");

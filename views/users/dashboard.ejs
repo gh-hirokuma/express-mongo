@@ -16,7 +16,7 @@
     </header>
 
     <div class="absolute w-full h-screen bg-blue-800"></div>
-    <div class="absolute bg-transparent w-full h-screen">
+    <div class="bg-transparent w-full h-screen">
 
     <section class="relative w-full h-24">
       <div class="flex flex-col text-center">
@@ -27,15 +27,13 @@
       </div>
     </section>
 
-
-    <section class="w-full flex items-center">
-      <div class="p-4 uppercase border-b-4 border-gray-200 text-3xl text-gray-200 font-opensans bold w-1/2 text-center">your divelog</div>
-      <div class="p-4 uppercase w-1/2 border-gray-200 text-2xl text-gray-200 hover:text-gray-400 font-opensans text-center">
-        <a href="/dashboard_spots">dive spots</a>
-      </div>
-    </section>
-
-    <section class="w-full bg-blue-800 opacity-50 p-2 md:p-4 w-full">
+    <section class="w-full bg-blue-800 opacity-75 p-2 md:p-4 w-full">
+      <section class="w-full flex items-center ">
+        <div class="p-4 uppercase border-b-4 border-gray-200 text-3xl text-gray-200 font-opensans bold w-1/2 text-center">your divelog</div>
+        <div class="p-4 uppercase w-1/2 border-gray-200 text-2xl text-gray-200 hover:text-gray-400 font-opensans text-center">
+          <a href="/dashboard_spots">dive spots</a>
+        </div>
+      </section>
       <section class="w-full p-1 md:p-4 container mx-auto">
         <ul class="flex flex-row flex-wrap">
           <% result.forEach((users, i) => { %>
@@ -48,16 +46,20 @@
                       <a href="/divelogs/<%= divelog._id %>"><%= `Dive #${i + 1}` %><br><%= divelog.spot_name %></a><br>
                       <% }) %> <% } %>
                     </div>
+                      <img
+                      class="object-cover h-64 w-full"
+                      src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                      alt="card1"
+                    />
                     </div>
             <% }); %>
           </li>
         </ul>
       </section>
-    </section>
-
-    <section class="w-full p-1 md:p-4 bg-red-800 container mx-auto my-5 text-center">
-      <div class="text-gray-200 text-2xl uppercase font-opensans rouned hover:text-gray-400"><a href="/users/<%= user._id %>/logs">View More</a></div>
-      <div class="text-gray-200 text-2xl uppercase font-opensans rouned hover:text-gray-400"><a href="/divelogs/new">Log Another Dive</a></div>
+      <section class="w-full p-1 md:p-4 bg-blue-800 container mx-auto my-5 text-center">
+        <div class="text-gray-200 text-2xl uppercase font-opensans rouned hover:text-gray-400"><a href="/users/<%= user._id %>/logs">View More</a></div>
+        <div class="text-gray-200 text-2xl uppercase font-opensans rouned hover:text-gray-400"><a href="/divelogs/new">Log Another Dive</a></div>
+      </section>
     </section>
 
     <nav
@@ -85,7 +87,6 @@
           />
         </form>
         </a>
-
     </nav>
 
     <%- include('../_partial/footer') %>

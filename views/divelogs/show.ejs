@@ -44,9 +44,9 @@
 
           <div class="flex flex-col justify-center text-center">
             <h2 class="text-white uppercase text-5xl font-mono tracking-widest">
-              <a href="/spots/<%= spots._id%>"><%= divelog.spot_name %></a>
+              <a href="/spots/<%= spots._id%>"><%= spots.name %></a>
             </h2>
-            <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= divelog.location_name %>, <%= divelog.country %></h2>
+            <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= spots.location %>, <%= spots.country %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Date: <%= divelog.date %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Entry: <%= divelog.entry %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Current: <%= divelog.current %></h2>
@@ -54,7 +54,7 @@
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Air Temperature: <%= divelog.air_temperature %> ℃</h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Water Temperature: <%= divelog.water_temperature %> ℃</h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Max Depth: <%= divelog.depth %> m</h2>
-            <h2 class="text-white uppercase text-3xl font-mono tracking-widest">CDuration: <%= divelog.duration %> mins</h2>
+            <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Duration: <%= divelog.duration %> mins</h2>
             <h2 class="text-white uppercase text-lg font-mono tracking-widest"><%= divelog.note %></h2>
           </div>
         </div>

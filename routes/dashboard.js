@@ -1,6 +1,7 @@
 var express = require("express");
 const { isAuthenticated } = require("../utils/auth");
 const { User } = require("../models/User");
+const { DiveLog } = require("../models/DiveLog");
 var router = express.Router();
 
 /* GET home page. */
@@ -19,10 +20,6 @@ var router = express.Router();
 
 router.get("/", function(req, res, next) {
   if (isAuthenticated(req.user)) {
-    // const { _id } = req.user;
-    // const { userId } = req.params;
-    // const isMe = userId === _id;
-
     User.find({}, (err, users) => {
       console.log(users);
     res.render("users/dashboard", {
@@ -30,29 +27,12 @@ router.get("/", function(req, res, next) {
       slug: "dashboard",
       user: req.user,
       result: users
-      // isMe
+
     });
-  }).populate("divelogs");
+  }).populate("divelogs").populate("spots");
 } else {
   res.redirect("/signin");
 }
 });
 
 module.exports = router;
-
-
-// router.get("/", function(req, res, next) {
-//   if (isAuthenticated(req.user)) {
-//     User.find({}, function(err, users) {
-//       if (err) console.log(err);
-//       console.log(users);
-//       res.render("divelogs/index", {
-//         title: "Dive Log",
-//         slug: "divelogs",
-//         result: users
-//       });
-//     }).populate("divelogs");
-//   } else {
-//     res.redirect("/signin");
-//   }
-// });
