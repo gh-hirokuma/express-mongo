@@ -20,16 +20,16 @@ var router = express.Router();
 
 router.get("/", function(req, res, next) {
   if (isAuthenticated(req.user)) {
-    User.find({}, (err, users) => {
-      console.log(users);
+    const { userId } = req.params;
+    User.find({_id: userId}, (err, result) => {
+      console.log(result);
     res.render("users/dashboard", {
       title: "Dashboard",
       slug: "dashboard",
-      user: req.user,
-      result: users
-
+      // user: req.user,
+      result,
     });
-  }).populate("divelogs").populate("spots");
+  }).populate("divelogs");
 } else {
   res.redirect("/signin");
 }

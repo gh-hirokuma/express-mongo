@@ -44,9 +44,9 @@
 
           <div class="flex flex-col justify-center text-center">
             <h2 class="text-white uppercase text-5xl font-mono tracking-widest">
-              <a href="/spots/<%= spots._id%>"><%= spots.name %></a>
+              <a href="/spots/<%= divelog.spot._id%>"><%= divelog.spot.name %></a>
             </h2>
-            <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= spots.location %>, <%= spots.country %></h2>
+            <h2 class="text-white uppercase text-3xl font-mono tracking-widest"><%= divelog.spot.location %>, <%= divelog.spot.country %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Date: <%= divelog.date %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Entry: <%= divelog.entry %></h2>
             <h2 class="text-white uppercase text-3xl font-mono tracking-widest">Current: <%= divelog.current %></h2>
@@ -66,7 +66,7 @@
       />
   </section>
 
-=
+
 
   <%- include('../_partial/footer') %>
   </body>

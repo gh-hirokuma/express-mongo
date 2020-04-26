@@ -30,7 +30,6 @@ router.post("/", function(req, res, next) {
     var insertingDiveLog = new DiveLog({
       ...req.body,
       user: req.user._id,
-      spot: req.spot._id,
       created_at: moment().unix(),
       updated_at: moment().unix()
     });
@@ -38,7 +37,6 @@ router.post("/", function(req, res, next) {
     // ドキュメントの保存
     insertingDiveLog.save(function(err) {
       if (err) console.log(err);
-
       User.findOne({ _id: insertingDiveLog.user }, (err, result) => {
         if (err) console.log(err);
 
@@ -116,8 +114,8 @@ router.get("/:divelogId", function(req, res, next) {
         title: "Dive Log",
         slug: "divelogs",
         divelog: result[0],
-      }).populate("spot");
-    });
+      });
+    }).populate("spot");
   } else {
     res.redirect("/signin");
   }

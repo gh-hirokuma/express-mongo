@@ -38,26 +38,15 @@
         </form>
       </div>
         <div class="flex flex-col justify-center text-center">
-          
+
     <form action="/divelogs/<%= divelog._id %>?_method=PUT" method="POST">
       <label for="date">Date:</label><br>
       <input type="date" id="date" name="date" value="<%= divelog.date %>"><br>
-      <label for="country">Country:</label><br>
-      <select class="js-example-basic-single" name="country">
-        <% countries.forEach(country => { %>
-          <option value="<%= country.name %>" <% if( country.name === divelog.country) {%>selected<% }%>>
-            <%= country.name %>
-          </option><% }) %>
-      </select><br>
-      <label for="location">Location:</label><br>
-      <select class="js-example-basic-single" name="locaion_name">
-        <% spots.forEach(spots => { %>
-          <option value="<%= spots.locatione %>" <% if( spots.location === divelog.location_name) {%>selected<% }%>>
-            <%= spots.location %>
-          </option><% }) %>
-      </select><br />
-      <label for="spot_name">Spot Name:</label><br>
-      <select class="js-example-basic-single" name="spot_name" value="">
+      <label for="spot_name">Spot Name:</label><br />
+      <select class="js-example-basic-single" name="spot" value="">
+        <% spots.forEach(spot => { %>
+          <option value="<%= spot.name %>" <% if( spot.name === divelog.spot_name) {%>selected<% }%>>
+            <%= spot.name %>
         <% spots.forEach(spot => { %>
           <option value="<%= spot.name %>" <% if( spot.name === divelog.spot_name) {%>selected<% }%>>
             <%= spot.name %>

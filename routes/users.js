@@ -52,10 +52,9 @@ router.get("/:userId/logs", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { _id } = req.user;
     const { userId } = req.params;
-
     const isMe = userId === _id;
-
     User.find({ _id: userId }, (err, result) => {
+      console.log(result);
       res.render("users/users_log", {
         title: "Users Log",
         slug: "users",
