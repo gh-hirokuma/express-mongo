@@ -34,6 +34,7 @@ const User = new Schema({
     }
   },
   divelogs: [{ type: Schema.Types.ObjectId, ref: "DiveLog" }],
+  image: String,
   created_at: Number,
   updated_at: Number
 });

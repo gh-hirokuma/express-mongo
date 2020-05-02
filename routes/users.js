@@ -6,6 +6,18 @@ const { User } = require("../models/User");
 const { isAuthenticated } = require("../utils/auth");
 const moment = require("moment");
 
+//画像
+// var storage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//     cb(null, "public/uploads");
+//   },
+//   filename: function(req, file, cb) {
+//     cb(null, `${v1()}-${file.originalname}`);
+//   }
+// });
+
+// var upload = multer({ storage: storage });
+
 //削除
 router.delete("/:userId", function(req, res, next) {
   if (isAuthenticated(req.user)) {
@@ -53,7 +65,7 @@ router.get("/:userId/logs", function(req, res, next) {
     const { _id } = req.user;
     const { userId } = req.params;
     const isMe = userId === _id;
-    User.find({ _id: userId }, (err, result) => {
+    User.findOne({_id: req.user._id}, (err, result) => {
       console.log(result);
       res.render("users/users_log", {
         title: "Users Log",
@@ -61,7 +73,7 @@ router.get("/:userId/logs", function(req, res, next) {
         result,
         isMe
       });
-    }).populate("users");
+    }).populate({ path: "divelogs", populate: { path: "spot" }});
   } else {
     res.redirect("/signin");
   }
@@ -89,7 +101,7 @@ router.get("/profile", function(req, res, next) {
         slug: "users",
         result: data,
       });
-    });
+    }).populate({ path: "divelogs", populate: { path: "spot" }});
   } else {
     res.redirect("/signin");
   }
@@ -132,10 +144,25 @@ router.get("/", function(req, res, next) {
   }
 });
 
-//user registration
+//user registration upload.single("file"),
 router.post("/", function(req, res, next) {
-  var insertingUser = new User({
+  //  let realPath = "";
+
+  // if (res.req.file) {
+  //   const { path } = res.req.file;
+
+  //   const tmpPath = path
+  //     .split("/")
+  //     .filter(path => path !== "public")
+  //     .join("/");
+
+  //   realPath = `/${tmpPath}`;
+  //   console.log(realPath);
+  // }
+
+  insertingUser = new User({
     ...req.body,
+    // image: realPath,
     created_at: moment().unix(),
     updated_at: moment().unix()
   });

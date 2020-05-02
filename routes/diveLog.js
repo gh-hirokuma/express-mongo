@@ -76,7 +76,7 @@ router.put("/:divelogId", function(req, res, next) {
       (err, result) => {
         res.redirect(`${req.baseUrl}/${divelogId}`);
       }
-    );
+    ).populate("spot");
   } else {
     res.redirect("/signin");
   }
