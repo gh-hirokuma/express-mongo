@@ -9,7 +9,7 @@
   <body>
     <%- include('../_partial/header') %>
 
-    <form action="/users/<%= user._id %>?_method=PUT" method="POST">
+    <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
       <label for="username">Name:</label><br>
       <input type="text" id="name" name="name" value="<%= user.username %>"><br>
       <label for="image">Image:</label><br>

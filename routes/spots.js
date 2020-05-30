@@ -69,7 +69,6 @@ router.get("/:spotId", function(req, res, next) {
 });
 
 //一覧
-/* GET users listing. */
 router.get("/", function(req, res, next) {
   const option = req.query.hasOwnProperty("next")
   ? { next: req.query.next }

@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('../_partial/head') %>
-  <script src="/js/drawer.js"></script>
+
   <body>
-    <header class="w-full bg-gray-200 p-2 px-4 text-black flex justify-between items-center">
-      <h1 class="text-xl font-extrabold tracking-widest ml-4 font-opensans text-blue-700">go2dive</h1>
-      <h1 class="text-2xl font-extrabold tracking-widest ml-4 font-opensans text-blue-700">Home</h1>
-      <div id="open_nav" class="align-items-center ml-16">
-        <svg viewBox="0 0 100 80" width="35" height="35" class="cursor-pointer">
-          <rect width="100" height="20"></rect>
-          <rect y="30" width="100" height="20"></rect>
-          <rect y="60" width="100" height="20"></rect>
-        </svg>
-      </div>
-    </header>
+    <%- include('../_partial/header') %>
 
     <div class="absolute w-full h-screen bg-blue-800"></div>
     <div class="absolute bg-transparent w-full h-screen">
 
-    <section class="relative w-full h-24">
+    <section class="relative w-full h-24 py-20">
       <div class="flex flex-col text-center">
         <% if(messages.success){ %>
           <h1 class="alert alert-success text-red-200 text-4xl text-bold font-opensans role="alert"><%=messages.success %></h1><% } %>
@@ -27,7 +17,7 @@
     </section>
 
     <section class="w-full flex items-center text-center">
-      <div class="p-4 uppercase border-b-4 border-gray-200 text-3xl text-gray-200 font-opensans bold w-1/2 text-center">your divelog</div>
+      <div class="p-4 uppercase border-b-4 border-gray-200 text-3xl text-gray-200 font-opensans bold w-1/2 text-center">dive log</div>
       <div class="p-4 uppercase w-1/2 border-gray-200 text-2xl text-gray-200 hover:text-gray-400 font-opensans text-center">
         <a href="/dashboard_spots">dive spots</a>
       </div>
@@ -50,14 +40,14 @@
 
         </ul>
       </section>
-      <section class="w-full p-1 md:p-4 bg-blue-800 container mx-auto my-5 text-center">
-        <div class="text-gray-200 text-2xl uppercase font-opensans rouned hover:text-gray-400"><a href="/users/<%= user._id %>/logs">View More</a></div>
+      <section class="w-40 container align-center p-1 md:p-4 bg-blue-800 container mx-auto my-5 text-center">
+        <p class="w-full text-xl bold uppercase text-blue-900 bg-yellow-400 px-3 py-1 rounded hover:text-blue-700 cursor:pointer font-mono"><a href="/users/<%= user._id %>/logs">View More</a></p>
       </section>
     </section>
 
     <nav
       id="nav"
-      class="bg-yellow-400 text-gray-200 uppercase font-opensans rouned
+      class="z-50 bg-yellow-400 uppercase font-opensans rouned
       w-64 h-full fixed top-0 right-0 hidden transition-transform-1s"
       >
       <div id="open_nav" class="top-5 ml-3">
@@ -68,15 +58,15 @@
       </div>
 
       <div class="px-2 pt-2 pg-4">
-        <a href="/users/profile" class='block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>My Profile</a>
-        <a href="/users/<%= user._id %>/logs" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>My Dive Log</a>
-        <a href="/spots" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>Find Spots</a>
-        <a href="/users" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>Find Buddies</a>
+        <a href="/users/profile" class='block px-2 py-1 text-blue-700 text-2xl font-bold font-mono rounded hover:bg-blue-200'>My Profile</a>
+        <a href="/users/<%= user._id %>/logs" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-mono rounded hover:bg-blue-200'>My Dive Log</a>
+        <a href="/spots" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-mono rounded hover:bg-blue-200'>Find Spots</a>
+        <a href="/users" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-mono rounded hover:bg-blue-200'>Find Buddies</a>
         <a href="/signin"><form action="/signout" method="post">
           <input
             type="submit"
             value="Log Out"
-            class="mt-1 block px-2 py-1 bg-yellow-400 text-blue-700 text-2xl font-bold font-opensans uppercase rounded hover:bg-blue-200 w-full text-left"
+            class="mt-1 block px-2 py-1 bg-yellow-400 text-blue-700 text-xl font-bold font-opensans uppercase rounded hover:bg-blue-200 w-full text-left"
           />
         </form>
         </a>

@@ -5,18 +5,21 @@ const { User } = require("../models/User");
 // const { DiveLog } = require("../models/DiveLog");
 const { isAuthenticated } = require("../utils/auth");
 const moment = require("moment");
+var multer = require("multer");
+const countries = require("../public/countries.json");
+const { v1 } = require("uuid");
 
 //画像
-// var storage = multer.diskStorage({
-//   destination: function(req, file, cb) {
-//     cb(null, "public/uploads");
-//   },
-//   filename: function(req, file, cb) {
-//     cb(null, `${v1()}-${file.originalname}`);
-//   }
-// });
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "public/uploads");
+  },
+  filename: function(req, file, cb) {
+    cb(null, `${v1()}-${file.originalname}`);
+  }
+});
 
-// var upload = multer({ storage: storage });
+var upload = multer({ storage: storage });
 
 //削除
 router.delete("/:userId", function(req, res, next) {
@@ -31,18 +34,29 @@ router.delete("/:userId", function(req, res, next) {
 });
 
 //更新後の結果を表示
-router.put("/:userId", function(req, res, next) {
+router.put("/:userId", upload.single("file"), function(req, res, next) {
   if (isAuthenticated(req.user)) {
+    console.log(res.req);
     const { userId } = req.params;
-    User.update({ _id: userId }, { $set: { ...req.body } }, (err, result) => {
-      res.redirect(`${req.baseUrl}/${userId}`);
+    let realPath = "";
+    if (res.req.file) {
+      const { path } = res.req.file;
+      const tmpPath = path
+        .split("/")
+        .filter(path => path !== "public")
+        .join("/");
+      realPath = `/${tmpPath}`;
+      console.log(realPath);
+    };
+    User.update({ _id: userId }, { $set: { ...req.body, image: realPath} }, (err, result) => {
+      res.redirect(`${req.baseUrl}/profile`);
     });
   } else {
     res.redirect("/signin");
   }
 });
 
-//更新
+// 更新
 router.get("/:userId/edit", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { userId } = req.params;
@@ -95,6 +109,7 @@ router.get("/profile", function(req, res, next) {
         created_at: user.created_at,
         updated_at: user.updated_at,
         divelogs: user.divelogs,
+        image: user.image,
       };
       res.render("users/profile", {
         title: "User",
@@ -112,18 +127,21 @@ router.get("/:userId", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { userId } = req.params;
     User.findOne({ _id: userId }, function(err, user) {
-      const data = {
-        _id: user._id,
-        username: user.username,
-        DOB: moment(user.DOB).format("YYYY/MM/DD"),
-        certificate: user.certificate,
-        country: user.country,
-        email: user.email,
-        created_at: user.created_at,
-        updated_at: user.updated_at
-      };
-      res.render("users/show", { title: "User", slug: "users", result: data });
-    });
+      {
+        const data = {
+          _id: user._id,
+          username: user.username,
+          DOB: moment(user.DOB).format("YYYY/MM/DD"),
+          certificate: user.certificate,
+          country: user.country,
+          email: user.email,
+          created_at: user.created_at,
+          updated_at: user.updated_at,
+          divelogs: user.divelogs,
+          image: user.image,
+        };
+        res.render("users/show", { title: "User", slug: "users", result: data });
+    }}).populate({ path: "divelogs", populate: { path: "spot" }});
   } else {
     res.redirect("/signin");
   }
@@ -145,24 +163,24 @@ router.get("/", function(req, res, next) {
 });
 
 //user registration upload.single("file"),
-router.post("/", function(req, res, next) {
-  //  let realPath = "";
+router.post("/", upload.single("file"), function(req, res, next) {
+  let realPath = "";
 
-  // if (res.req.file) {
-  //   const { path } = res.req.file;
+  if (res.req.file) {
+    const { path } = res.req.file;
 
-  //   const tmpPath = path
-  //     .split("/")
-  //     .filter(path => path !== "public")
-  //     .join("/");
+    const tmpPath = path
+      .split("/")
+      .filter(path => path !== "public")
+      .join("/");
 
-  //   realPath = `/${tmpPath}`;
-  //   console.log(realPath);
-  // }
+    realPath = `/${tmpPath}`;
+    console.log(realPath);
+  }
 
   insertingUser = new User({
     ...req.body,
-    // image: realPath,
+    image: realPath,
     created_at: moment().unix(),
     updated_at: moment().unix()
   });

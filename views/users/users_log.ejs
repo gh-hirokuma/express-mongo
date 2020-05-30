@@ -3,21 +3,11 @@
   <%- include('../_partial/head') %>
   <script src="/js/drawer.js"></script>
   <body>
-    <header class="w-full bg-gray-200 p-2 px-4 text-black flex justify-between items-center">
-      <h1 class="text-xl font-extrabold tracking-widest ml-4 font-opensans text-blue-700">go2dive</h1>
-      <h1 class="text-2xl font-extrabold tracking-widest ml-4 font-opensans text-blue-700">DiveLog</h1>
-      <div id="open_nav" class="align-items-center ml-16">
-        <svg viewBox="0 0 100 80" width="35" height="35" class="cursor-pointer">
-          <rect width="100" height="20"></rect>
-          <rect y="30" width="100" height="20"></rect>
-          <rect y="60" width="100" height="20"></rect>
-        </svg>
-      </div>
-    </header>
+    <%- include('../_partial/header') %>
 
-    <div class="absolute w-full h-screen bg-blue-800"></div>
-    <div class="absolute bg-transparent w-full h-screen">
-      <a href="/dashboard" class='block w-300 px-3 py-1 text-gray-200 text-2xl font-bold font-opensans rounded hover:text-gray-300'>Back Home</a>
+    <div class="pt-24 absolute w-full h-screen bg-blue-800"></div>
+    <div class="pt-24 absolute bg-transparent w-full h-screen">
+      <a href="/dashboard" class="width-100 px-3 py-1 bg-yellow-400 text-blue-900 text-xl font-bold font-mono rounded hover:text-blue-700 text-center mx-3">Back Home</a>
             <section class="w-full bg-blue-800 p-2 md:p-4">
               <section class="w-full p-1 md:p-4 container mx-auto">
                 <ul class="flex flex-col justify-center items-center">
@@ -36,18 +26,18 @@
             </section>
 
             <nav
-              id="nav"
-              class="bg-yellow-400 text-gray-200 uppercase font-opensans rouned
-              w-64 h-full fixed top-0 right-0 hidden transition-transform-1s"
-              >
-              <div id="open_nav" class="top-5 ml-3">
-                <svg id="close_nav" viewbox="0 0 100 80" class="cursor-pointer">
-                  <line x1="10" y1="10" x2="23" y2="23" stroke="#071a3b" stroke-width="4" />
-                  <line x1="23" y1="10" x2="10" y2="23" stroke="#071a3b" stroke-width="4" />
-                </svg>
-              </div>
+            id="nav"
+            class="z-50 bg-yellow-400 uppercase font-opensans rouned
+            w-64 h-full fixed top-0 right-0 hidden transition-transform-1s"
+            >
+            <div id="open_nav" class="top-5 ml-3">
+              <svg id="close_nav" viewbox="0 0 100 80" class="cursor-pointer">
+                <line x1="10" y1="10" x2="23" y2="23" stroke="#071a3b" stroke-width="4" />
+                <line x1="23" y1="10" x2="10" y2="23" stroke="#071a3b" stroke-width="4" />
+              </svg>
+            </div>
 
-              <div class="px-2 pt-2 pg-4">
+            <div class="px-2 pt-2 pg-4">
                 <% if (isMe) { %> <a href="/divelogs/new" class='block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>Log a Dive</a> <% } %>
                 <a href="/users/profile" class='block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>My Profile</a>
                 <a href="/spots" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>Find Spots</a>

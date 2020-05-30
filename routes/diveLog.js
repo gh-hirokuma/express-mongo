@@ -14,6 +14,7 @@ router.get("/new", function(req, res, next) {
     // console.log(countries);
     res.render("divelogs/new", {
       title: "Log a Dive",
+      slug: "Log a Dive",
       countries: countries.data,
       location: result,
       spots: result
@@ -109,11 +110,28 @@ router.get("/:divelogId/edit", function(req, res, next) {
 router.get("/:divelogId", function(req, res, next) {
   if (isAuthenticated(req.user)) {
     const { divelogId } = req.params;
-    DiveLog.find({ _id: divelogId }, (err, result) => {
+    DiveLog.findOne({ _id: divelogId }, function(err, divelog){
+      const data = {
+        _id: divelog._id,
+        user: divelog.user,
+        spot: divelog.spot,
+        date: moment(divelog.date).format("YYYY/MM/DD"),
+        entry: divelog.entry,
+        current: divelog.current,
+        weather: divelog.weather,
+        air_temperature: divelog.air_temperature,
+        water_temperature: divelog.water_temperature,
+        depth: divelog.depth,
+        duration: divelog.duration,
+        note: divelog.note,
+        created_at: divelog.created_at,
+        updated_at: divelog.updated_at,
+      };
+      console.log(data);
       res.render("divelogs/show", {
         title: "Dive Log",
         slug: "divelogs",
-        divelog: result[0],
+        result: data,
       });
     }).populate("spot");
   } else {
