@@ -55,10 +55,11 @@
       </svg>
     </div>
     <div class="px-2 pt-2 pg-4">
-      <a href="/users/profile" class='block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>My Profile</a>
-      <a href="/users/<%= user._id %>/logs" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>My Dive Log</a>
-      <a href="/spots" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>Find Spots</a>
-      <a href="/users" class='mt-1 block px-2 py-1 text-blue-700 text-2xl font-bold font-opensans rounded hover:bg-blue-200'>Find Buddies</a>
+      <a href="/users/profile" class='block px-2 py-1 text-blue-700 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>My Profile</a>
+      <a href="/users/<%= user._id %>/logs" class='mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>My Dive Log</a>
+      <a href="/divelogs/new" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Log a Dive</a>
+      <a href="/spots" class='mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Find Spots</a>
+      <a href="/users" class='mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Find Buddies</a>
       <a href="/signin"><form action="/signout" method="post">
         <input
           type="submit"

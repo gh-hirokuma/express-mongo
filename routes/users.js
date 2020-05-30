@@ -154,7 +154,7 @@ router.get("/", function(req, res, next) {
       res.render("users/index", {
         title: "User",
         slug: "users",
-        result: result
+        result: result,
       });
     });
   } else {
