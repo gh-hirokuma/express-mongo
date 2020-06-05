@@ -1,6 +1,7 @@
 var express = require("express");
 const { isAuthenticated } = require("../utils/auth");
 const { Spot } = require("../models/Spot");
+const { User } = require("../models/User");
 var router = express.Router();
 
 /* GET home page. */

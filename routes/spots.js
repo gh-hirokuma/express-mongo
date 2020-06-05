@@ -21,7 +21,7 @@ var upload = multer({ storage: storage });
 //新規追加
 router.get("/new", function(req, res, next) {
   console.log(countries);
-  res.render("spots/new", { title: "Dive Spots", countries: countries.data });
+  res.render("spots/new", { title: "Dive Spot", slug: "new spot", countries: countries.data });
 });
 
 //削除

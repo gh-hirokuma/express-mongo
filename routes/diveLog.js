@@ -133,7 +133,7 @@ router.get("/:divelogId", function(req, res, next) {
         slug: "divelogs",
         result: data,
       });
-    }).populate("spot");
+    }).populate("spot").populate("user");
   } else {
     res.redirect("/signin");
   }

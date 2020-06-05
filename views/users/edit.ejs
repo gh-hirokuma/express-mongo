@@ -8,28 +8,73 @@
     <title>Edit Profile</title>
   <body>
     <%- include('../_partial/header') %>
-
-    <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-      <label for="username">Name:</label><br>
-      <input type="text" id="name" name="name" value="<%= user.username %>"><br>
-      <label for="image">Image:</label><br>
-      <input
-        type="file"
-        id="file"
-        name="file"
-        value=""
-        accept="image/png, image/jpeg"
-      /><br>
-      <label for="certificate">Certification Level:</label><br>
-      <input type="text" id="certificate" name="certificate" value="<%= user.certificate %>"><br>
-      <label for="country">Country:</label><br>
-      <input type="text" id="country" name="country" value="<%= user.country %>"><br>
-      <label for="DOB">Date of Birth:</label><br>
-      <input type="date" id="DOB" name="DOB" value="<%= user.DOB %>"><br>
-
-      <input type="submit" value="Submit">
-    </form>
-
+      <section class="relative w-full h-screen bg-blue-900">
+        <div class="absolute w-full h-full flex flex-col justify-center">
+          <div class="cpntainer w-56 float-left mx-8">
+            <a href="/dashboard"><p class="width-100 px-3 py-1 bg-yellow-400 text-blue-900 text-xl font-bold font-mono rounded hover:text-blue-700 cursor-pointer text-center mx-3 my-2">Back Home</p></a>
+            <a href="/users/profile"><p class="width-100 px-3 py-1 bg-yellow-400 text-blue-900 text-xl font-bold font-mono rounded hover:text-blue-700 cursor-pointer text-center mx-3 my-2">Back to Profile</p></a>
+          </div>
+          <div class="flex flex-col justify-center items-center text-right">
+            <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+              <div class="my-2">
+                <label for="username" class="text-gray-200 font-mono bold text-2xl">Name:</label>
+                <input type="text" id="name" name="name" value="<%= user.username %>">
+              </div>
+              <div class="my-2">
+                <label for="image" class="text-gray-200 font-mono bold text-2xl">Image:</label>
+                <input
+                type="file"
+                id="file"
+                name="file"
+                value=""
+                accept="image/png, image/jpeg"
+                />
+              </div>
+              <div class="my-2">
+                <label for="certificate" class="text-gray-200 font-mono bold text-2xl">Certification Level:</label>
+                <input type="text" id="certificate" name="certificate" value="<%= user.certificate %>">
+              </div>
+              <div class="my-2">
+                <label for="country" class="text-gray-200 font-mono bold text-2xl">Country:</label>
+                <input type="text" id="country" name="country" value="<%= user.country %>">
+              </div>
+              <div class="my-2">
+                <label for="DOB" class="text-gray-200 font-mono bold text-2xl">Date of Birth:</label>
+                <input type="date" id="DOB" name="DOB" value="<%= user.DOB %>">
+              </div>
+              <div class="my-2">
+                <input type="submit" value="Submit" class="text-xl bold uppercase text-blue-900 bg-yellow-400 px-3 py-1 rounded hover:text-blue-700 cursor-pointer font-mono">
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <nav
+      id="nav"
+      class="z-50 bg-yellow-400 uppercase font-opensans rouned
+      w-64 h-full fixed top-0 right-0 hidden transition-transform-1s"
+      >
+        <div id="open_nav" class="top-5 ml-3">
+          <svg id="close_nav" viewbox="0 0 100 80" class="cursor-pointer">
+            <line x1="10" y1="10" x2="23" y2="23" stroke="#071a3b" stroke-width="4" />
+            <line x1="23" y1="10" x2="10" y2="23" stroke="#071a3b" stroke-width="4" />
+          </svg>
+        </div>
+        <div class="px-2 pg-4">
+          <a href="/users/profile" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>My Profile</a>
+          <a href="/spots" class='mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Find Spots</a>
+          <a href="/divelogs/new" class='mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Log a Dive</a>
+          <a href="/signin">
+            <form action="/signout" method="post">
+              <input
+                type="submit"
+                value="Log Out"
+                class="mt-1 block px-2 py-1 bg-yellow-400 text-blue-900 text-2xl font-bold font-mono uppercase rounded hover:text-blue-700 cursor:pointer w-full text-left"
+              />
+            </form>
+          </a>
+        </div>
+    </nav>
     <%- include('../_partial/footer') %>
   </body>
 </html>

@@ -16,9 +16,7 @@
             <a href ='/spots/<%= spot._id %>'>
               <h1 class="text-center text-gray-200 uppercase text-3xl font-mono tracking-widest mt-10"><%= spot.name %></h1>
               <h2 class="text-center text-gray-200 uppercase text-2xl font-mono tracking-widest"><%= spot.location %>, <%= spot.country %></h2>
-              <div class="text-center">
-                <img src="<%= spot.image %>" width="500px" alt="<%= spot.name %>">
-              </div>
+              <img src="<%= spot.image %>" width="500px" alt="<%= spot.name %>">
             </a>
           </div>
                 <% }); %>
@@ -45,10 +43,10 @@
       </div>
 
       <div class="px-2 pt-2 pg-4">
-        <a href ="/spots/new" class="block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer">Add a Spot</a>
         <a href="/users/profile" class="block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer">My Profile</a>
-        <a href="/users" class="mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer">Find Buddies</a>
+        <a href="" class='mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>My Dive Log</a>
         <a href="/divelogs/new" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Log a Dive</a>
+        <a href="/users" class="mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer">Find Buddies</a>
         <a href="/signin"><form action="/signout" method="post">
           <input
             type="submit"
@@ -56,6 +54,7 @@
             class="mt-1 block px-2 py-1 bg-yellow-400 text-blue-900 text-2xl font-bold font-mono uppercase rounded hover:text-blue-700 cursor:pointer w-full text-left"
           />
         </a>
+        <a href ="/spots/new" class="block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer">Add a Spot</a>
   </nav>
 
     <%- include('../_partial/footer') %>

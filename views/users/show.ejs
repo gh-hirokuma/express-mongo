@@ -59,10 +59,12 @@
           <line x1="23" y1="10" x2="10" y2="23" stroke="#071a3b" stroke-width="4" />
         </svg>
       </div>
-
+      <div class="px-2 pt-2 pg-4">
+        <a href="/users/profile" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>My Profile</a>
+        <a href="" class='mt-1 block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>My Dive Log</a>
+        <a href="/divelogs/new" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Log a Dive</a>
         <a href="/spots" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Find Spots</a>
         <a href="/users" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Find Buddies</a>
-        <a href="/dashboard" class='block px-2 py-1 text-blue-900 text-2xl font-bold font-mono rounded hover:text-blue-700 cursor:pointer'>Back Home</a>
         <a href="/signin"><form action="/signout" method="post">
           <input
             type="submit"
@@ -71,15 +73,7 @@
           />
         </form>
         </a>
-        <a>
-        <form action="/users/<%= result._id %>?_method=DELETE" method="POST">
-          <input
-            type="submit"
-            value="Quit go2dive"
-            class="mt-1 block px-2 py-1 bg-yellow-400 text-blue-900 text-2xl font-bold font-mono uppercase rounded hover:text-blue-700 cursor:pointer w-full text-left"
-            />
-        </form>
-        </a>
+      </div>
     </nav>
 
     </form>
